@@ -1,0 +1,5 @@
+/storage/*.key
+/vendor
+.env
+.env.backup
+README.md
