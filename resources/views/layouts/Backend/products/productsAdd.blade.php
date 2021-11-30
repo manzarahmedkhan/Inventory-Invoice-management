@@ -73,7 +73,7 @@
                                   </div>
                                   <div class="col-lg-6">
                                         <div class="form-group">
-                                          <label>Product Name</label>
+                                          <label>Product Description</label>
                                            <input type="text" name="name" class="form-control @error('name') Invalid @enderror form-control-sm">
                                            @error('name')
                                            <strong class="alert alert-danger">{{ $message }}
