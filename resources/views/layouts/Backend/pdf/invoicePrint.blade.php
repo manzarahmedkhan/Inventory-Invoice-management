@@ -7,32 +7,55 @@
 		body {
 			font-family: 'XB Riyaz', sans-serif;
 		}
+		#footer {
+		  position: fixed;
+		  width: 100%;
+		  bottom: 0;
+		  left: 0;
+		  right: 0;
+		  text-align: center;
+		}
+
+		#footer p {
+		  border-top: 2px solid #555555;
+		  margin-top:10px;
+		}
 	</style>
 </head>
 <body>
-<h2 style="text-align:center; color: #4e73df; padding-bottom: 5px; margin-left: 20px;" class="text-primary">
-	<strong>{{Auth::user()->shopName}}</strong>
-</h2>
-<h4 style="text-align:center; color: green; padding-bottom: 5px; margin-left: 20px;" class="text-primary">
+<h1 style="text-align:center; color: #4e73df; margin-left: 20px;" class="text-primary">
 	<strong>{{Auth::user()->arabic_shopName}}</strong>
+</h1>
+<h4 style="text-align:center; color: green;  margin-left: 20px;" class="text-primary">
+	<strong>{{Auth::user()->shopName}}</strong>
 </h4>
+
 <table width="100%" class="table" style="text-align: center;">
     <tbody class="text-center">
 			<tr>
-			   <td>
+			   <td align="left">
+				    <span style="font-size: 15px;">
+				    	{{Auth::user()->description}} <br>
+				    	{{Auth::user()->CR_no}}	
+				    </span>
+			    </td>
+			    <td align="right">
+				    <span style="font-size: 17px;">
+				    	{{Auth::user()->arabic_description}} <br>
+				    	{{Auth::user()->arabic_CR_no}}	
+				    </span>
+			    </td>
+			</tr>
+	</tbody>
+</table>
+
+<table width="100%" class="table" style="text-align: center;">
+    <tbody class="text-center">
+			<tr>
+			   <td align="left">
 				    <h4 class="text-dark"><strong>Invoice No:- {{ $invoice->invoice_no }}</strong></h4>
 			    </td>
-			    <td>
-					<h5 class="text-dark">
-						<strong><span style="color:red">|</span> Mobile No:- {{ Auth::user()->number }}</strong>
-					</h5>
-			    </td>
-			    <td>
-			    	<h5 class="text-dark">
-					 <strong><span style="color:red">|</span> Address:- {{ Auth::user()->address }}</strong>
-					</h5>
-			    </td>
-		</tr>
+			</tr>
 	</tbody>
 </table>
 <hr>
@@ -46,25 +69,27 @@
 <table width="100%">
 	<tbody>
 	  <tr>
-	  <td colspan="6">	
+	  <td colspan="4">	
 		<h5 class="text-dark">
-		 <strong>Customer Name:- {{ $invoice->payment->customer->name }} </strong>
+		 <strong>Customer Name :- {{ $invoice->payment->customer->name }} </strong>
 		</h5>
 	  </td>
 	  	@if($invoice->payment->customer->mobile)
-		<td colspan="6"><h5 class="text-dark">
-		 <strong>Mobile:- {{ $invoice->payment->customer->mobile }}</strong>
+		<td colspan="4"><h5 class="text-dark">
+		 <strong>Mobile :- {{ $invoice->payment->customer->mobile }}</strong>
 		</h5>
 	    </td>
 	    @endif
-		<!-- <td><h5 class="text-dark">
-		 <strong>Email:- {{ $invoice->payment->customer->email }}</strong>
+	    <td align="right"><h5 class="text-dark">
+    		@php
+				$date = new DateTime('now', new DateTimezone('Asia/Riyadh'));
+				if(env('DATETIMEZONE')){
+					$date = new DateTime('now', new DateTimezone(env('DATETIMEZONE')));
+				} 
+			@endphp
+    		<strong style="text-align:right">Date/Time :- {{ $date->format('d-m-Y H:i A') }}</strong>
 		</h5>
-	    </td>
-		<td><h5 class="text-dark">
-		 <strong>Address:- {{ $invoice->payment->customer->address }}</strong>
-		</h5>
-	    </td> -->
+    	</td>
 	  </tr>
 	</tbody>
 </table>
@@ -123,18 +148,13 @@
     </tr>
     </tbody>
 </table>
-@php
-$date = new DateTime('now', new DateTimezone('Asia/Riyadh'));
-if(env('DATETIMEZONE')){
-	$date = new DateTime('now', new DateTimezone(env('DATETIMEZONE')));
-} 
-@endphp
-<br>
+<!-- <br>
 <strong>
 	Printing Time:- {{ $date->format('F j, Y, g:i a') }}
-</strong>
-<hr>
-<table width="100%">
+</strong> -->
+<!-- <hr> -->
+<div id="footer">
+	<table width="100%">
 	<tbody>
 		<tr>
 			<td style="text-align: left;">Receiver Signature
@@ -148,5 +168,16 @@ if(env('DATETIMEZONE')){
 		</tr>
 	</tbody>
 </table>
+  <p>
+  	<hr>
+  	<span style="font-size: 16px;color: #4e73df">
+  	  {{ Auth::user()->arabic_address}} | {{Auth::user()->arabic_number}} | {{Auth::user()->arabic_number_2}} | {{Auth::user()->arabic_number_3}}
+  	</span>
+	<br>
+	<span style="font-size: 15px;color: green">
+		{{ Auth::user()->address}} | {{Auth::user()->number}} | {{Auth::user()->number_2}} | {{Auth::user()->number_3}}
+	</span>	
+  </p>
+</div>
 </body>
 </html>

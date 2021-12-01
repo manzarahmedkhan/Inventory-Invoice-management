@@ -22,10 +22,18 @@ class Users extends Migration
             $table->string('shopName')->nullable();
             $table->string('number')->nullable();
             $table->string('address')->nullable();
+            $table->string('description')->nullable();
+            $table->string('CR_no')->nullable();
             $table->string('arabic_shopName')->nullable();
             $table->string('arabic_number')->nullable();
             $table->string('arabic_address')->nullable();
+            $table->string('arabic_description')->nullable();
+            $table->string('arabic_CR_no')->nullable();
             $table->string('profile')->nullable();
+            $table->string('number_2')->nullable();
+            $table->string('number_3')->nullable();
+            $table->string('arabic_number_2')->nullable();
+            $table->string('arabic_number_3')->nullable();
             $table->timestamps();
         });
     }
