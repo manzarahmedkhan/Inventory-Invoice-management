@@ -19,9 +19,12 @@ class Users extends Migration
             $table->string('name')->nullable();
             $table->string('email',)->unique();
             $table->string('password');
-            $table->string('number')->nullable();
             $table->string('shopName')->nullable();
+            $table->string('number')->nullable();
             $table->string('address')->nullable();
+            $table->string('arabic_shopName')->nullable();
+            $table->string('arabic_number')->nullable();
+            $table->string('arabic_address')->nullable();
             $table->string('profile')->nullable();
             $table->timestamps();
         });
