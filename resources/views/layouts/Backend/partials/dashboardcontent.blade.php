@@ -31,10 +31,10 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Invoice Earning (Today)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">${{ $todayInvoice }}</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">SR{{ $todayInvoice }}</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      <i class="fas fa-2x text-gray-300">SR</i>
                     </div>
                   </div>
                 </div>
@@ -65,10 +65,10 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Purchase Earning (Today)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">${{ $todayPurchase }}</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">SR{{ $todayPurchase }}</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      <i class="fas fa-2x text-gray-300">SR</i>
                     </div>
                   </div>
                 </div>
@@ -107,7 +107,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $supplier }}</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      <i class="fas fa-2x text-gray-300">SR</i>
                     </div>
                   </div>
                 </div>
@@ -141,7 +141,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $users }}</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      <i class="fas fa-2x text-gray-300">SR</i>
                     </div>
                   </div>
                 </div>
@@ -179,7 +179,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $unit }}</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      <i class="fas fa-2x text-gray-300">SR</i>
                     </div>
                   </div>
                 </div>
@@ -213,7 +213,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalInvoice }}</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      <i class="fas fa-2x text-gray-300">SR</i>
                     </div>
                   </div>
                 </div>
@@ -248,10 +248,10 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Due Amount</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">${{ $due_amount }}</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">SR{{ $due_amount }}</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      <i class="fas fa-2x text-gray-300">SR</i>
                     </div>
                   </div>
                 </div>
