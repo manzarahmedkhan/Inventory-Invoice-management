@@ -24,8 +24,8 @@ class supplierController extends Controller
         // validation
         $validation = $request->validate([
         	'name'    => 'required',
-        	'mobile'  => 'required',
-        	'email'   => 'required|email'
+        	// 'mobile'  => 'required',
+        	// 'email'   => 'required|email'
         ]);
         // Insert Data
         $supplierInsert = new supplier;

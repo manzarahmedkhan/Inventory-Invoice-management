@@ -71,6 +71,16 @@
                                           @enderror
                                        </div> 
                                   </div>
+                                  <!-- <div class="col-lg-6">
+                                        <div class="form-group">
+                                          <label>Product Code</label>
+                                           <input type="text" name="code" class="form-control @error('code') Invalid @enderror form-control-sm">
+                                           @error('code')
+                                           <strong class="alert alert-danger">{{ $message }}
+                                           </strong>
+                                          @enderror
+                                       </div> 
+                                  </div> -->
                                   <div class="col-lg-6">
                                         <div class="form-group">
                                           <label>Product Description</label>
