@@ -25,7 +25,7 @@ class supplierController extends Controller
         $validation = $request->validate([
         	'name'    => 'required',
         	// 'mobile'  => 'required',
-        	// 'email'   => 'required|email'
+        	'email'   => 'email'
         ]);
         // Insert Data
         $supplierInsert = new supplier;
@@ -48,8 +48,8 @@ class supplierController extends Controller
         // validation
         $validation = $request->validate([
             'name'    => 'required',
-            'mobile'  => 'required',
-            'email'   => 'required|email'
+            // 'mobile'  => 'required',
+            'email'   => 'email'
         ]);
         // Update
         $supplierUpdate = supplier::find($id);
