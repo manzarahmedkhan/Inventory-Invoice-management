@@ -157,7 +157,7 @@
                                   <div class="col-lg-6">
                                        <div class="form-group">
                                           <label>Date</label>
-                                          <input type="date" name="date" id="date" class="form-control form-control-sm">
+                                          <input type="date" name="date" id="date" class="form-control form-control-sm" value="{{date('Y-m-d')}}">
                                        </div> 
                                   </div>
                                  <div class="col-lg-6">
