@@ -17,7 +17,7 @@ class Users extends Migration
             $table->id();
             $table->string('userRole')->nullable();
             $table->string('name')->nullable();
-            $table->string('email',)->unique();
+            $table->string('email')->unique();
             $table->string('password');
             $table->string('shopName')->nullable();
             $table->string('number')->nullable();

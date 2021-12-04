@@ -27,8 +27,13 @@ class customerController extends Controller
         // validation
         $validation = $request->validate([
         	'name'    => 'required',
+<<<<<<< HEAD
         	'mobile'  => 'required',
         	'email'   => 'required|email'
+=======
+        	// 'mobile'  => 'required',
+        	// 'email'   => 'required|email'
+>>>>>>> ad7fa2c05c2fd6da28f37e5f77ec3f9e878c8405
         ]);
         // Insert Data
         $customer = new customer;
