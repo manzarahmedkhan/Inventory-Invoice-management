@@ -24,6 +24,7 @@
                       <th>Date</th> 
                       <th>Quantity</th>
                       <th>Unit Price</th>
+                      <th>VAT Amount</th>
                       <th>Total Price</th>
                       <th>Description</th>
                       <th>Status</th>
@@ -44,6 +45,7 @@
                         {{ $prachase->product->unit->name }}
                        </td>
                        <td>{{ $prachase->unit_price }}</td>
+                       <td>{{ $prachase->vat_amount }}</td>
                        <td>{{ $prachase->buying_price }}</td>
                        <td>{{ $prachase->description }}</td>
                        <td>

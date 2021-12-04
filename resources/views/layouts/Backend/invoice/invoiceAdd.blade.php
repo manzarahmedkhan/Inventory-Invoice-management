@@ -88,7 +88,7 @@
              sum += parseFloat(value);             
           }
           });
-        // Discount
+        // Discount and Vat
         var discount_amount = parseFloat($('#discount_amount').val());
         if(!isNaN(discount_amount) && discount_amount.length != 0) {
           sum -= parseFloat(discount_amount);

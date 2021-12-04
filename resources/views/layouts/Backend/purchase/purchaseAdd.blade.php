@@ -18,7 +18,10 @@
         <input type="number" min="1" class="form-control form-control-sm text-right buying_qty" name="buying_qty[]"  value="1">
       </td> 
       <td>
-        <input type="number" class="form-control form-control-sm text-right unit_price" name="unit_price[]"  value="">
+        <input type="number" class="form-control form-control-sm text-right unit_price" name="unit_price[]"  value="" min="0" step=".01">
+      </td>
+      <td>
+        <input type="number" class="form-control form-control-sm text-right vat_amount" name="vat_amount[]"  value="" min="0" step=".01" readonly>
       </td>
       <td>
         <input type="text" name="description[]" class="form-control form-control-sm">
@@ -87,7 +90,10 @@
         var unit_price = $(this).closest("tr").find("input.unit_price").val();
         var qty        = $(this).closest("tr").find("input.buying_qty").val();
         var total      = unit_price * qty;
-        $(this).closest("tr").find("input.buying_price").val(total);
+        var vat = parseFloat((total*15)/100);
+        var sum = parseFloat(total + vat);
+        $(this).closest("tr").find("input.vat_amount").val(vat);
+        $(this).closest("tr").find("input.buying_price").val(sum);
         totalAmountPrice();
       });
       //calculate sum of amount in invoice
@@ -229,6 +235,7 @@
                         <th>Product Name</th>
                         <th width="7%">Pcs/Kg</th>
                         <th width="10%">Unit Price</th>
+                        <th width="10%">VAT</th>
                         <th>Description</th>
                         <th width="10%">Total Price</th>
                         <th>Action</th>
@@ -238,8 +245,7 @@
                       
                     </tbody>
                     <tbody>
-                      <tr>
-                        <td colspan="5"></td>
+                        <td colspan="6"></td>
                         <td>
                           <input type="text" name="estimated_amount" value="0" id="estimated_amount" class="form-control form-control-sm text-right estimated_amount" readonly style="background-color: #D8FDBA">
                         </td>

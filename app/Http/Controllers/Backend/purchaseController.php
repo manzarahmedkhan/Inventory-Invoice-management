@@ -43,6 +43,7 @@ class purchaseController extends Controller
                 $purchase->product_id   = $request->product_id[$i];
                 $purchase->buying_qty   = $request->buying_qty[$i];
                 $purchase->unit_price   = $request->unit_price[$i];
+                $purchase->vat_amount   = $request->vat_amount[$i];
                 $purchase->buying_price = $request->buying_price[$i];
                 $purchase->description  = $request->description[$i];
                 $purchase->status       = '0';
