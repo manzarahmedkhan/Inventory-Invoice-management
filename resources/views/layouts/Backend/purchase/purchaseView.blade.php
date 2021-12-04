@@ -16,8 +16,9 @@
                 <table class="table table-bordered table-responsive" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>SL.</th>
+                      <!-- <th>SL.</th> -->
                       <th>Supplier Name</th>
+                      <th>Product Code</th>
                       <th>Category Name</th>
                       <th>Product Name</th>
                       <th>Purchase No.</th>
@@ -34,8 +35,9 @@
                   <tbody>
                     @foreach($prachases as $key => $prachase)
                      <tr>
-                       <td>{{ $key+1 }}</td>
+                       <!-- <td>{{ $key+1 }}</td> -->
                        <td>{{ $prachase->supplier->name }}</td>
+                       <td>{{ $prachase['product']['code'] }}</td>
                        <td>{{ $prachase->category->name }}</td>
                        <td>{{ $prachase['product']['name'] }}</td>
                        <td>{{ $prachase->purchase_no }}</td>

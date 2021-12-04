@@ -235,7 +235,7 @@
                         <th>Product Name</th>
                         <th width="7%">Pcs/Kg</th>
                         <th width="10%">Unit Price</th>
-                        <th width="10%">VAT</th>
+                        <th width="10%">VAT (15%)</th>
                         <th>Description</th>
                         <th width="10%">Total Price</th>
                         <th>Action</th>
