@@ -171,11 +171,11 @@
   <p>
   	<hr>
   	<span style="font-size: 16px;color: #4e73df">
-  	  {{ Auth::user()->arabic_address}} | {{Auth::user()->arabic_number}} | {{Auth::user()->arabic_number_2}} | {{Auth::user()->arabic_number_3}}
+  	  {{ Auth::user()->arabic_address}} | {{Auth::user()->arabic_number}} @if(!empty(Auth::user()->arabic_number_2))| {{Auth::user()->arabic_number_2}} @endif @if(!empty(Auth::user()->arabic_number_3))| {{Auth::user()->arabic_number_3}}@endif
   	</span>
 	<br>
 	<span style="font-size: 15px;color: green">
-		{{ Auth::user()->address}} | {{Auth::user()->number}} | {{Auth::user()->number_2}} | {{Auth::user()->number_3}}
+		{{ Auth::user()->address}} | {{Auth::user()->number}} @if(!empty(Auth::user()->arabic_number_2))| {{Auth::user()->number_2}} @endif @if(!empty(Auth::user()->arabic_number_3))| {{Auth::user()->number_3}}@endif
 	</span>	
   </p>
 </div>
