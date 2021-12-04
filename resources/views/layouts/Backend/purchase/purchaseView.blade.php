@@ -38,7 +38,7 @@
                        <td>{{ $prachase->category->name }}</td>
                        <td>{{ $prachase['product']['name'] }}</td>
                        <td>{{ $prachase->purchase_no }}</td>
-                       <td>{{ date('m-d-Y', strtotime($prachase->date)) }}</td>
+                       <td>{{ date('d-m-Y', strtotime($prachase->date)) }}</td>
                        <td>
                         {{ $prachase->buying_qty }}
                         {{ $prachase->product->unit->name }}
