@@ -73,9 +73,19 @@
                                   </div>
                                   <div class="col-lg-6">
                                         <div class="form-group">
+                                          <label>Product Code</label>
+                                           <input type="text" name="code" class="form-control @error('code') Invalid @enderror form-control-sm" value="{{ $lastCode }}" >
+                                           @error('code')
+                                           <strong class="alert alert-danger">{{ $message }}
+                                           </strong>
+                                          @enderror
+                                       </div> 
+                                  </div>
+                                  <div class="col-lg-6">
+                                        <div class="form-group">
                                           <label>Product Description</label>
-                                           <input type="text" name="name" class="form-control @error('name') Invalid @enderror form-control-sm">
-                                           @error('name')
+                                           <input type="text" name="product_name" class="form-control @error('product_name') Invalid @enderror form-control-sm" value="{{ old('product_name') }}" >
+                                           @error('product_name')
                                            <strong class="alert alert-danger">{{ $message }}
                                            </strong>
                                           @enderror

@@ -75,8 +75,8 @@ class invoiceController extends Controller
                         $customer = new customer();
                         $customer->name    = $request->name;
                         $customer->mobile  = $request->mobile;
-                        $customer->email   = $request->email;
-                        $customer->address = $request->address;
+                        // $customer->email   = $request->email;
+                        // $customer->address = $request->address;
                         $customer->save();
                         $customer_id = $customer->id;
                     }elseif($request->customer == null){

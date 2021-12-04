@@ -320,10 +320,10 @@
                        <input type="text" name="name" class="form-control" placeholder="Write Customer Name">
                        <br>
                        <input type="number" name="mobile" class="form-control" placeholder="Write Customer Mobile">
-                       <br>
-                       <input type="email" name="email" class="form-control" placeholder="Write Customer Email">
-                       <br>
-                       <input type="text" name="address" class="form-control" placeholder="Write Customer Adddress">
+                       <!-- <br> -->
+                       <!-- <input type="email" name="email" class="form-control" placeholder="Write Customer Email"> -->
+                       <!-- <br> -->
+                       <!-- <input type="text" name="address" class="form-control" placeholder="Write Customer Adddress"> -->
                      </div>
                      <!--- After New Customer End ---> 
                    </div>

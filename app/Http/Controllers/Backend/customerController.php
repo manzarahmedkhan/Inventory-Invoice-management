@@ -27,8 +27,8 @@ class customerController extends Controller
         // validation
         $validation = $request->validate([
         	'name'    => 'required',
-        	'mobile'  => 'required',
-        	'email'   => 'required|email'
+        	// 'mobile'  => 'required',
+        	// 'email'   => 'required|email'
         ]);
         // Insert Data
         $customer = new customer;
@@ -51,8 +51,8 @@ class customerController extends Controller
         // validation
         $validation = $request->validate([
             'name'    => 'required',
-            'mobile'  => 'required',
-            'email'   => 'required|email'
+            // 'mobile'  => 'required',
+            // 'email'   => 'required|email'
         ]);
         // Update
         $customerUpdate = customer::find($id);

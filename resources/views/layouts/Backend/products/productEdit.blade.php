@@ -76,9 +76,19 @@
                                   </div>
                                   <div class="col-lg-6">
                                         <div class="form-group">
+                                          <label>Product Code</label>
+                                           <input type="text" name="code" class="form-control form-control-sm @error('code') Invalid @enderror" value="{{ $products->code }}">
+                                           @error('code')
+                                           <strong class="alert alert-danger">{{ $message }}
+                                           </strong>
+                                          @enderror
+                                       </div> 
+                                  </div>
+                                  <div class="col-lg-6">
+                                        <div class="form-group">
                                           <label>Product Name</label>
-                                           <input type="text" name="name" class="form-control form-control-sm @error('name') Invalid @enderror" value="{{ $products->name }}">
-                                           @error('name')
+                                           <input type="text" name="product_name" class="form-control form-control-sm @error('product_name') Invalid @enderror" value="{{ $products->product_name }}">
+                                           @error('product_name')
                                            <strong class="alert alert-danger">{{ $message }}
                                            </strong>
                                           @enderror

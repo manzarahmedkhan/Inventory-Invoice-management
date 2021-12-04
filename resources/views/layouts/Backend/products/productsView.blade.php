@@ -18,9 +18,10 @@
                     <tr>
                       <th>SL.</th>
                       <th>Supplier Name</th>
-                      <th>Product Stock</th>
-                      <th>Product Category</th>
-                      <th>Product Name</th>
+                      <th>Stock</th>
+                      <th>Category</th>
+                      <th>Code</th>
+                      <th>Description</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -34,6 +35,7 @@
                         {{ $product['unit']['name'] }}
                        </td>
                        <td>{{ $product->category->name }}</td>
+                       <td>{{ $product->code }}</td>
                        <td>{{ $product->name }}</td>
                        @php 
                        $productCount = App\Model\purchase::where('product_id', $product->id)->count();
