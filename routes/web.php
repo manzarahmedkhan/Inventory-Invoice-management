@@ -91,6 +91,7 @@ Route::group(['as'=>'products.', 'prefix'=>'products','namespace'=>'Backend','mi
    Route::get('/edit/{id}','productController@edit')->name('edit');
    Route::post('/update/{id}','productController@update')->name('update');
    Route::get('/delete/{id}','productController@delete')->name('delete');
+   Route::post('/checkCodeExists','productController@checkCodeExists')->name('checkCodeExists');
 });
 // Purchase Route //
 Route::group(['as'=>'purchase.', 'prefix'=>'purchase','namespace'=>'Backend','middleware'=>'checkvalidUsers'], function(){

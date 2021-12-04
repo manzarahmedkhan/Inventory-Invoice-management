@@ -77,4 +77,12 @@ class productController extends Controller
         // Redirect 
       return redirect()->route('products.view')->with('error', 'products Deleted Successfully');
     }
+
+    public function checkCodeExists(Request $request){
+        $checkCodeExists = product::where('code',$request->code)->first();
+        if(!$checkCodeExists){
+            return false;
+        }
+        return true;
+    }
 }

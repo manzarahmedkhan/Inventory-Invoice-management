@@ -6,6 +6,9 @@
 	<style type="text/css">
 		body {
 			font-family: 'XB Riyaz', sans-serif;
+			margin: 0;
+			padding: 0;
+			width: 100%;
 		}
 		#footer {
 		  position: fixed;
@@ -23,10 +26,10 @@
 	</style>
 </head>
 <body>
-<h1 style="text-align:center; color: #4e73df; margin-left: 20px;" class="text-primary">
-	<strong>{{Auth::user()->arabic_shopName}}</strong>
+<h1 style="text-align:center; color: #4e73df;margin:-20px auto 0;padding: 0;display: block;position: relative;" class="text-primary">
+	<strong>dhfhdhg</strong>
 </h1>
-<h4 style="text-align:center; color: green;  margin-left: 20px;" class="text-primary">
+<h4 style="text-align:center; color: green; margin:0px auto 0; padding: 0;" class="text-primary">
 	<strong>{{Auth::user()->shopName}}</strong>
 </h4>
 
@@ -94,7 +97,7 @@
 	</tbody>
 </table>
 <hr>
-<table width="100%" border="1" style="text-align: center;">
+<table width="100%" border="1" style="text-align: center;border-color: #DDD;">
 	<thead style="background:#cdced2;">
         <tr>
            <th width="10%">SR NO.</th>
@@ -168,16 +171,15 @@
 		</tr>
 	</tbody>
 </table>
-  <p>
-  	<hr>
+  	<hr style="margin:0 !important">
   	<span style="font-size: 16px;color: #4e73df">
-  	  {{ Auth::user()->arabic_address}} | {{Auth::user()->arabic_number}} @if(!empty(Auth::user()->arabic_number_2))| {{Auth::user()->arabic_number_2}} @endif @if(!empty(Auth::user()->arabic_number_3))| {{Auth::user()->arabic_number_3}}@endif
+  	  {{ Auth::user()->arabic_address}} @if(!empty(Auth::user()->arabic_number_1))| {{Auth::user()->arabic_number}} @endif @if(!empty(Auth::user()->arabic_number_2))| {{Auth::user()->arabic_number_2}} @endif @if(!empty(Auth::user()->arabic_number_3))| {{Auth::user()->arabic_number_3}}@endif
   	</span>
 	<br>
 	<span style="font-size: 15px;color: green">
-		{{ Auth::user()->address}} | {{Auth::user()->number}} @if(!empty(Auth::user()->arabic_number_2))| {{Auth::user()->number_2}} @endif @if(!empty(Auth::user()->arabic_number_3))| {{Auth::user()->number_3}}@endif
+		{{ Auth::user()->address}} @if(!empty(Auth::user()->arabic_number_1))| {{Auth::user()->number}} @endif @if(!empty(Auth::user()->arabic_number_2))| {{Auth::user()->number_2}} @endif @if(!empty(Auth::user()->arabic_number_3))| {{Auth::user()->number_3}}@endif
 	</span>	
-  </p>
 </div>
+<br>
 </body>
 </html>
