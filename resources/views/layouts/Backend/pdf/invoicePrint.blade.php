@@ -55,6 +55,16 @@
 			   <td align="left">
 				    <h4 class="text-dark"><strong>Invoice No:- {{ $invoice->invoice_no }}</strong></h4>
 			    </td>
+			    <td align="right"><h5 class="text-dark">
+		    		@php
+						$date = new DateTime('now', new DateTimezone('Asia/Riyadh'));
+						if(env('DATETIMEZONE')){
+							$date = new DateTime('now', new DateTimezone(env('DATETIMEZONE')));
+						} 
+					@endphp
+		    		<strong style="text-align:right">Date/Time :- {{ $date->format('d-m-Y H:i A') }}</strong>
+				</h5>
+		    	</td>
 			</tr>
 	</tbody>
 </table>
@@ -80,16 +90,6 @@
 		</h5>
 	    </td>
 	    @endif
-	    <td align="right"><h5 class="text-dark">
-    		@php
-				$date = new DateTime('now', new DateTimezone('Asia/Riyadh'));
-				if(env('DATETIMEZONE')){
-					$date = new DateTime('now', new DateTimezone(env('DATETIMEZONE')));
-				} 
-			@endphp
-    		<strong style="text-align:right">Date/Time :- {{ $date->format('d-m-Y H:i A') }}</strong>
-		</h5>
-    	</td>
 	  </tr>
 	</tbody>
 </table>
