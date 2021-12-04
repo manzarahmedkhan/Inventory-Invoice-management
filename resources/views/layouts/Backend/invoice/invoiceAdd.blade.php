@@ -93,7 +93,7 @@
         if(!isNaN(discount_amount) && discount_amount.length != 0) {
           sum -= parseFloat(discount_amount);
         }
-          var vat = parseFloat((sum*15)/100);
+          var vat = 0;
           var sum = parseFloat(sum + vat);
           $('#vat_amount').val(vat);
           $('#estimated_amount').val(sum);
