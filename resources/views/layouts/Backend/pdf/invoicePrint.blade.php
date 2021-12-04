@@ -53,9 +53,9 @@
     <tbody class="text-center">
 			<tr>
 			   <td align="left">
-				    <h4 class="text-dark"><strong>Invoice No:- {{ $invoice->invoice_no }}</strong></h4>
+				    <h3 class="text-dark"><strong>Invoice No:- {{ $invoice->invoice_no }}</strong></h3>
 			    </td>
-			    <td align="right"><h5 class="text-dark">
+			    <td align="right"><h4 class="text-dark">
 		    		@php
 						$date = new DateTime('now', new DateTimezone('Asia/Riyadh'));
 						if(env('DATETIMEZONE')){
@@ -63,7 +63,7 @@
 						} 
 					@endphp
 		    		<strong style="text-align:right">Date/Time :- {{ $date->format('d-m-Y H:i A') }}</strong>
-				</h5>
+				</h4>
 		    	</td>
 			</tr>
 	</tbody>
