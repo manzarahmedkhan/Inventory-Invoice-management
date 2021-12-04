@@ -71,21 +71,37 @@
                                           @enderror
                                        </div> 
                                   </div>
+<<<<<<< HEAD
                                   <!-- <div class="col-lg-6">
                                         <div class="form-group">
                                           <label>Product Code</label>
                                            <input type="text" name="code" class="form-control @error('code') Invalid @enderror form-control-sm">
+=======
+                                  <div class="col-lg-6">
+                                        <div class="form-group">
+                                          <label>Product Code</label>
+                                           <input type="text" name="code" class="form-control @error('code') Invalid @enderror form-control-sm" value="{{ $lastCode }}" >
+>>>>>>> ad7fa2c05c2fd6da28f37e5f77ec3f9e878c8405
                                            @error('code')
                                            <strong class="alert alert-danger">{{ $message }}
                                            </strong>
                                           @enderror
                                        </div> 
+<<<<<<< HEAD
                                   </div> -->
                                   <div class="col-lg-6">
                                         <div class="form-group">
                                           <label>Product Description</label>
                                            <input type="text" name="name" class="form-control @error('name') Invalid @enderror form-control-sm">
                                            @error('name')
+=======
+                                  </div>
+                                  <div class="col-lg-6">
+                                        <div class="form-group">
+                                          <label>Product Description</label>
+                                           <input type="text" name="product_name" class="form-control @error('product_name') Invalid @enderror form-control-sm" value="{{ old('product_name') }}" >
+                                           @error('product_name')
+>>>>>>> ad7fa2c05c2fd6da28f37e5f77ec3f9e878c8405
                                            <strong class="alert alert-danger">{{ $message }}
                                            </strong>
                                           @enderror
