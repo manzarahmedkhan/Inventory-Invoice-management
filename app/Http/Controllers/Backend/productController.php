@@ -79,7 +79,7 @@ class productController extends Controller
     }
 
     public function checkCodeExists(Request $request){
-        $checkCodeExists = product::where('code',$request->code)->first();
+        $checkCodeExists = product::where('code',$request->code)->where('supplier_id',$request->supplier_id)->first();
         if(!$checkCodeExists){
             return false;
         }

@@ -14,7 +14,7 @@
                                   <div class="col-lg-6">
                                        <div class="form-group">
                                           <label>Company Name</label>
-                                          <select name="supplier_id" class="form-control select2">
+                                          <select name="supplier_id" id="supplier_id" class="form-control select2">
                                             <option value="">
                                             *Select Company*
                                             </option>
@@ -71,7 +71,6 @@
                                           @enderror
                                        </div> 
                                   </div>
-                                  <input type="hidden" id="checkCode" value="0">
                                   <div class="col-lg-6">
                                         <div class="form-group">
                                           <label>Product Code</label>
@@ -109,6 +108,16 @@
 @section('js')
 <script type="text/javascript">
 $(document).ready(function(){  
+
+  // $(document).on('change','#supplier_id', function(){
+  //    var paid_status = $(this).val();
+  //    if(paid_status == 'Partical_paid') {
+  //     $('.paid_amount').show();
+  //    } else{
+  //     $('.paid_amount').hide();
+  //    }
+  // });
+
   $(document).on('keyup', '#code', function (evtobj) {
     if (!(evtobj.altKey || evtobj.ctrlKey || evtobj.shiftKey)){
        if (evtobj.keyCode == 16) {return false;}
@@ -116,22 +125,23 @@ $(document).ready(function(){
        // $("body").append(evtobj.keyCode + " ");
     }
     var token = $('[name="_token"]').val();
+    var supplier_id = $('[name="supplier_id"]').val();
     var ref = $(this);  
     var code = ref.val(); 
     $.ajax({
         url: "checkCodeExists",
         data: {
            '_token': token,
-           'code'  : code
+           'code'  : code,
+           'supplier_id'  : supplier_id
         },
         type: 'POST',
         success: function(response) {
            if(response == 1){
-             $('#checkCode').val(1);
-             $.notify("Product Code Already Exists",{globalPosition:'top right',className:'error'});
+             $.notify("Product Code Already Exists for this Supplier",{globalPosition:'top right',className:'error'});
              return false;
            }else{
-              $('#checkCode').val(0);
+              return true;
            }
         }
     });
@@ -140,12 +150,26 @@ $(document).ready(function(){
 
 
   function submitForm(){
-    var checkCode = $('#checkCode').val();
-    if (checkCode == 1) {
-        $.notify("Product Code Already Exists",{globalPosition:'top right',className:'error'});
-    }else{
-      $('#myForm').submit();
-    }
+    var token = $('[name="_token"]').val();
+    var supplier_id = $('[name="supplier_id"]').val();
+    var code = $('#code').val();
+    $.ajax({
+        url: "checkCodeExists",
+        data: {
+           '_token': token,
+           'code'  : code,
+           'supplier_id'  : supplier_id
+        },
+        type: 'POST',
+        success: function(response) {
+           if(response == 1){
+             $.notify("Product Code Already Exists for this Supplier",{globalPosition:'top right',className:'error'});
+             return false;
+           }else{
+              $('#myForm').submit();
+           }
+        }
+    });
   }
 </script>
 @endsection
