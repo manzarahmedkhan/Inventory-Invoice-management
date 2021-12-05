@@ -27,7 +27,7 @@
 </head>
 <body>
 <h1 style="text-align:center; color: #4e73df;margin:-20px auto 0;padding: 0;display: block;position: relative;" class="text-primary">
-	<strong>dhfhdhg</strong>
+	<strong>{{Auth::user()->arabic_shopName}}</strong>
 </h1>
 <h4 style="text-align:center; color: green; margin:0px auto 0; padding: 0;" class="text-primary">
 	<strong>{{Auth::user()->shopName}}</strong>
