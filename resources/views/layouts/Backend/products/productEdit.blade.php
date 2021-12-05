@@ -56,7 +56,7 @@
                         <!---- From Two Colum Start ---->
                                   <div class="col-lg-6">
                                        <div class="form-group">
-                                          <label>Product Category</label>
+                                          <label>Category</label>
                                           <select name="category_id" class="form-control select2">
                                             <option value="">
                                             *Select Categories*
@@ -76,7 +76,7 @@
                                   </div>
                                   <div class="col-lg-6">
                                         <div class="form-group">
-                                          <label>Product Code</label>
+                                          <label>Item Code</label>
                                           <input type="hidden" name="previous_code" id="previous_code" value="{{$products->code}}">
                                            <input type="text" name="code" id="code" class="form-control form-control-sm @error('code') Invalid @enderror" value="{{ $products->code }}">
                                            @error('code')
@@ -87,7 +87,7 @@
                                   </div>
                                   <div class="col-lg-6">
                                         <div class="form-group">
-                                          <label>Product Name</label>
+                                          <label>Description</label>
                                            <input type="text" name="product_name" class="form-control form-control-sm @error('product_name') Invalid @enderror" value="{{ $products->name }}">
                                            @error('product_name')
                                            <strong class="alert alert-danger">{{ $message }}
@@ -134,7 +134,7 @@ $(document).ready(function(){
         type: 'GET',
         success: function(response) {
            if(response == 1){
-             $.notify("Product Code Already Exists for this Supplier",{globalPosition:'top right',className:'error'});
+             $.notify("Item Code Already Exists for this Supplier",{globalPosition:'top right',className:'error'});
              return false;
            }else{
               return true;
@@ -161,7 +161,7 @@ $(document).ready(function(){
         type: 'GET',
         success: function(response) {
            if(response == 1){
-             $.notify("Product Code Already Exists for this Supplier",{globalPosition:'top right',className:'error'});
+             $.notify("Item Code Already Exists for this Supplier",{globalPosition:'top right',className:'error'});
              return false;
            }else{
               $('#myForm').submit();

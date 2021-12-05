@@ -19,7 +19,7 @@
                       <th>SL.</th>
                       <th>Supplier Name</th>
                       <th>Item Code</th>
-                      <th>Product Category</th>
+                      <th>Category</th>
                       <th>Description</th>
                       <th>In (Stock)</th>
                       <th>Out (Stock)</th>

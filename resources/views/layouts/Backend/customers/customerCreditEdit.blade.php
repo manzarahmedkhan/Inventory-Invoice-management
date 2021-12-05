@@ -60,7 +60,7 @@
                  <tr class="text-center">
                   <th>SL.</th>
                   <th>Category Name</th>
-                  <th>Product Name</th>
+                  <th>Description</th>
                   <th>Quantity</th>
                   <th>Unit Price</th>
                   <th>Total Price</th>

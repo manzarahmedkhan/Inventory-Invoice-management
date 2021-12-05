@@ -4,16 +4,11 @@
 	<title>Invoice</title>
 </head>
 <body>
-	<h2 style="text-align:center; color: #4e73df; padding-bottom: 5px; margin-left: 20px;" class="text-primary"><strong>Shop Name:- Codding Solve BD</strong></h2>
-	<h5 style="text-align: center; color: black; padding-bottom: 0">
-	  <strong>Shop Owner Mobile:- 01871848137</strong>
-	</h5>
-	<h5 style="text-align: center; color: black; padding-bottom: 0">
-	  <strong>Shop Mobile:- 01827924326</strong>
-	</h5>
+	<h2 style="text-align:center; color: #4e73df; padding-bottom: 5px; margin-left: 20px;" class="text-primary"><strong>Daily Invoice Report</strong></h2>
+	
     <hr style="padding-bottom: 0px;">
     <h4 style="color: black; padding-bottom: 0">
-	  <strong>Daily Invoice Report:-
+	  <strong>Date:-
 	   ( {{ date('d-m-Y', strtotime($stime)) }} - {{ date('d-m-Y', strtotime($etime)) }} ) 
 	</strong>
 	</h4>
@@ -23,7 +18,7 @@
 			<td>Customer Name-Mobile</td>
 			<td>Invoice No</td>
 			<td>Date</td>
-			<td>Description</td>
+			<td>Comment</td>
 			<td>Amount</td>
 		</tr>
 	</thead>

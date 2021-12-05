@@ -18,9 +18,9 @@
                     <tr>
                       <!-- <th>SL.</th> -->
                       <th>Supplier</th>
-                      <th>Product Code</th>
+                      <th>Item Code</th>
                       <th>Category Name</th>
-                      <th>Product Name</th>
+                      <th>Description</th>
                       <th>Purchase No.</th>
                       <th width="20%">Date</th> 
                       <th>Qty</th>

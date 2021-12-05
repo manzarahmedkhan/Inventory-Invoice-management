@@ -45,7 +45,7 @@
                   </tr>
                   @if($invoice->payment->customer->address)
                   <tr>
-                    <td><strong>Description</strong></td>
+                    <td><strong>Comment</strong></td>
                     <td colspan="3">{{ $invoice->description }}</td>
                   </tr>
                   @endif
@@ -58,7 +58,7 @@
                  <tr class="text-center">
                   <th>SL NO.</th>
                   <th>Category Name</th>
-                  <th>Product Name</th>
+                  <th>Description</th>
                   <th>Current Quantity</th>
                   <th>Quantity</th>
                   <th>Unit Price</th>

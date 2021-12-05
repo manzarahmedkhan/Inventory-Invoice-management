@@ -130,7 +130,7 @@
 <script type="text/javascript">
   $(function(){
 
-    //get supplier and product details by product code
+    //get supplier and product details by Item Code
     $(document).on('keyup','#product_code',function(evtobj){
       if (!(evtobj.altKey || evtobj.ctrlKey || evtobj.shiftKey)){
          if (evtobj.keyCode == 16) {return false;}

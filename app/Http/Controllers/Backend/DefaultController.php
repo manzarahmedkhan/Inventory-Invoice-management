@@ -46,14 +46,14 @@ class DefaultController extends Controller
       return response()->json($product);
     }
 
-    //Get Product code
+    //Get Item Code
     public function getProductCode(Request $request){
        $supplier_id = $request->supplier_id;
        $allCategory = product::select('id','code','category_id','name')->with(['category'])->where('supplier_id',$supplier_id)->get();
        return response()->json($allCategory);
     }
 
-    //Get Supplier and product details from Product code
+    //Get Supplier and product details from Item Code
     public function getSupplier(Request $request){
        $code = $request->code;
        $allCategory = product::select('id','category_id','name','supplier_id','quantity')->with(['category','supplier'])->where('code',$code)->get();

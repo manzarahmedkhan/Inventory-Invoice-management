@@ -4,13 +4,8 @@
 	<title>Invoice</title>
 </head>
 <body>
-	<h2 style="text-align:center; color: #4e73df; padding-bottom: 5px; margin-left: 20px;" class="text-primary"><strong>Shop Name:- Codding Solve BD</strong></h2>
-	<h5 style="text-align: center; color: black; padding-bottom: 0">
-	  <strong>Shop Owner Mobile:- 01871848137</strong>
-	</h5>
-	<h5 style="text-align: center; color: black; padding-bottom: 0">
-	  <strong>Shop Mobile:- 01827924326</strong>
-	</h5>
+	<h2 style="text-align:center; color: #4e73df; padding-bottom: 5px; margin-left: 20px;" class="text-primary"><strong>{{Auth::user()->shopName}}</strong></h2>
+	
     <hr style="padding-bottom: 0px;">
     <h3 style="color: black; padding-bottom: 0">
 	  <strong>Supplier name:- {{ $suppliers['0']['supplier']['name'] }} </strong>
@@ -19,15 +14,17 @@
 		<thead>
 			<tr>
                <th>SL.</th>
-               <th>Product Category</th>
-               <th>Product Name</th>
-               <th>Product Stock</th>
+               <th>Item Code</th>
+               <th>Category</th>
+               <th>Description</th>
+               <th>Stock</th>
             </tr>
 		</thead>
 	    <tbody>
             @foreach($suppliers as $key => $supplier)
             <tr>
                 <td>{{ $key+1 }}</td>
+                <td>{{ $supplier->code }}</td>
                 <td>{{ $supplier['category']['name'] }}</td>
                 <td>{{ $supplier->name }}</td>
                 <td>

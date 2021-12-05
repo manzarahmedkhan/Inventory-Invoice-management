@@ -54,7 +54,7 @@
                         <!---- From Two Colum Start ---->
                                   <div class="col-lg-6">
                                        <div class="form-group">
-                                          <label>Product Category</label>
+                                          <label>Category</label>
                                           <select name="category_id" class="form-control select2">
                                             <option value="">
                                             *Select Categories*
@@ -73,7 +73,7 @@
                                   </div>
                                   <div class="col-lg-6">
                                         <div class="form-group">
-                                          <label>Product Code</label>
+                                          <label>Item Code</label>
                                            <input type="text" name="code" id="code" class="form-control @error('code') Invalid @enderror form-control-sm" value="{{ $lastCode }}" >
                                            @error('code')
                                            <strong class="alert alert-danger">{{ $message }}
@@ -128,7 +128,7 @@ $(document).ready(function(){
         type: 'GET',
         success: function(response) {
            if(response == 1){
-             $.notify("Product Code Already Exists for this Supplier",{globalPosition:'top right',className:'error'});
+             $.notify("Item Code Already Exists for this Supplier",{globalPosition:'top right',className:'error'});
              return false;
            }else{
               return true;
@@ -153,7 +153,7 @@ $(document).ready(function(){
         type: 'GET',
         success: function(response) {
            if(response == 1){
-             $.notify("Product Code Already Exists for this Supplier",{globalPosition:'top right',className:'error'});
+             $.notify("Item Code Already Exists for this Supplier",{globalPosition:'top right',className:'error'});
              return false;
            }else{
               $('#myForm').submit();

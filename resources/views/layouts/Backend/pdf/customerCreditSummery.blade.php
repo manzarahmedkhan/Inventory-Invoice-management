@@ -4,19 +4,14 @@
 	<title>Invoice</title>
 </head>
 <body>
-	<h2 style="text-align:center; color: #4e73df; padding-bottom: 5px; margin-left: 20px;" class="text-primary"><strong>Shop Name:- Codding Solve BD</strong></h2>
-	<h5 style="text-align: center; color: black; padding-bottom: 0">
-	  <strong>Shop Owner Mobile:- 01871848137</strong>
-	</h5>
-	<h5 style="text-align: center; color: black; padding-bottom: 0">
-	  <strong>Shop Mobile:- 01827924326</strong>
-	</h5>
+	<h2 style="text-align:center; color: #4e73df; padding-bottom: 5px; margin-left: 20px;" class="text-primary"><strong>Customer Credit ALL Summery</strong></h2>
+	
     <hr style="padding-bottom: 0px;">
-    <h4 style="color: black; padding-bottom: 0">
+    <!-- <h4 style="color: black; padding-bottom: 0">
 	  <strong>
 	  	Customer Credit ALL Summery:-
 	</strong>
-	</h4>
+	</h4> -->
     <!--- Customer Info start ---->
               <table width="100%" border="1" style="color: black;">
                 <tbody>
@@ -50,7 +45,7 @@
                  <tr class="text-center">
                   <th>SL.</th>
                   <th>Category Name</th>
-                  <th>Product Name</th>
+                  <th>Description</th>
                   <th>Quantity</th>
                   <th>Unit Price</th>
                   <th>Total Price</th>

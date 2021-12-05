@@ -102,7 +102,7 @@
         <tr>
            <th width="10%">SR NO.</th>
            <!-- <th>Category Name</th> -->
-           <th width="30%">Product Name</th>
+           <th width="30%">Description</th>
            <th width="20%">Quantity</th>
            <th width="20%">Unit Price</th>
            <th width="20%">Total Price</th>
