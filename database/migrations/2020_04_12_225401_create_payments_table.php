@@ -22,7 +22,7 @@ class CreatePaymentsTable extends Migration
             $table->double('vat_amount')->nullable();
             $table->double('due_amount')->nullable();
             $table->double('total_amount')->nullable();
-            $table->double('discount_amount')->nullable();
+            $table->double('discount_amount')->default('0');
             $table->timestamps();
         });
     }

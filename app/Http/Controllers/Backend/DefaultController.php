@@ -56,7 +56,7 @@ class DefaultController extends Controller
     //Get Supplier and product details from Product code
     public function getSupplier(Request $request){
        $code = $request->code;
-       $allCategory = product::select('id','category_id','name','supplier_id')->with(['category','supplier'])->where('code',$code)->get();
+       $allCategory = product::select('id','category_id','name','supplier_id','quantity')->with(['category','supplier'])->where('code',$code)->get();
        // dd($allCategory);
        return response()->json($allCategory);
     }

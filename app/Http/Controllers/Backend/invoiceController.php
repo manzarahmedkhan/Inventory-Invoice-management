@@ -63,6 +63,7 @@ class invoiceController extends Controller
                         $invoiceDetail->invoice_id    = $invoice->id;
                         $invoiceDetail->category_id   = $request->category_id[$i];
                         $invoiceDetail->product_id    = $request->product_id[$i];
+                        $invoiceDetail->supplier_id   = $request->supplier_id[$i];
                         $invoiceDetail->selling_qty   = $request->selling_qty[$i];
                         $invoiceDetail->unit_price    = $request->unit_price[$i];
                         $invoiceDetail->selling_price = $request->selling_price[$i];
@@ -94,7 +95,8 @@ class invoiceController extends Controller
                      $payment->total_amount    = $request->estimated_amount;
                      $payment->discount_amount = $request->discount_amount;
                      if($request->paid_status == 'full_paid'){
-                        $payment->vat_amount = $request->vat_amount;
+                        $payment->vat_percent = $request->vat_percent;
+                        $payment->vat_amount  = $request->vat_amount;
                         $payment->paid_amount = $request->estimated_amount;
                         $payment->due_amount  = '0';
                         $paymentDetail->current_paid_amount = $request->estimated_amount;

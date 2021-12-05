@@ -12,4 +12,7 @@ class invoiceDetail extends Model
    public function product(){
    	return $this->belongsTo(product::class, 'product_id', 'id');
    }
+   public function supplier(){
+      return $this->belongsTo(supplier::class, 'supplier_id', 'id');
+   }
 }

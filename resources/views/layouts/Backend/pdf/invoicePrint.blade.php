@@ -131,7 +131,7 @@
     </tr>
     <tr>
     	<td colspan="4" style="text-align: right;">Discount Amount:-</td>
-    	<td>{{ $invoice->payment->discount_amount }}</td>
+    	<td>{{ $invoice->payment->discount_amount ?? 0 }}</td>
     </tr>
     <tr>
     	<td colspan="4" style="text-align: right;">VAT Amount:-</td>

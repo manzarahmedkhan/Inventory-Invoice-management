@@ -19,7 +19,7 @@
                       <th>Customer Name</th>
                       <th>Invoice No.</th>
                       <th>Date</th> 
-                      <th>Description</th>
+                      <th>Comment</th>
                       <th>Amount</th>
                       <th>Print</th>
                     </tr>

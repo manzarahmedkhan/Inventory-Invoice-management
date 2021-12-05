@@ -24,7 +24,7 @@
                       <th>Quantity</th>
                       <th>Unit Price</th>
                       <th>Total Price</th>
-                      <th>Description</th>
+                      <!-- <th>Description</th> -->
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
@@ -45,7 +45,7 @@
                        </td>
                        <td>{{ $prachase->unit_price }}</td>
                        <td>{{ $prachase->buying_price }}</td>
-                       <td>{{ $prachase->description }}</td>
+                       <!-- <td>{{ $prachase->description }}</td> -->
                        <td>
                          @if($prachase->status == '0')
                          <span class="btn btn-danger">Pending</span>

@@ -15,25 +15,40 @@
               <!--- Customer Info start ---->
               <table class="table" style="color: black;">
                 <tbody>
-                  <tr>
-                    <td><strong>Customer Information</strong></td>
-                    <td><strong>Customer Name: </strong>
+                  <tr width="10%">
+                    <td ><strong style="color: green; font-size: 20px;padding-right: 30px;">Customer Information</strong>
+
+                    @if($invoice->payment->customer->name)
+                    <span  style="padding-right: 30px;">
+                      <strong>Customer Name: </strong>
                       {{ $invoice->payment->customer->name }}
-                    </td>
-                    <td><strong>Customer Mobile: </strong>
+                    </span>  
+                    @endif
+                    @if($invoice->payment->customer->mobile)
+                    <span  style="padding-right: 30px;">
+                      <strong>Customer Mobile: </strong>
                       {{ $invoice->payment->customer->mobile }}
-                    </td>
-                    <td><strong>Customer Email: </strong>
+                    </span>  
+                    @endif
+                    @if($invoice->payment->customer->email)
+                    <span  style="padding-right: 30px;">
+                      <strong>Customer Email: </strong>
                       {{ $invoice->payment->customer->email }}
-                    </td>
-                    <td><strong>Customer Adddress: </strong>
+                    </span>
+                    @endif
+                    @if($invoice->payment->customer->address)
+                    <span  style="padding-right: 30px;">
+                      <strong>Customer Adddress: </strong>
                       {{ $invoice->payment->customer->address }}
-                    </td>
+                    </span>
+                    @endif
                   </tr>
+                  @if($invoice->payment->customer->address)
                   <tr>
                     <td><strong>Description</strong></td>
                     <td colspan="3">{{ $invoice->description }}</td>
                   </tr>
+                  @endif
                 </tbody>
               </table>
               <!--- Customer Info End ---->
@@ -81,15 +96,11 @@
                 </tr>
                 <tr class="text-center">
                   <td colspan="6" class="text-right"><strong>Discount:</strong></td>
-                  <td><strong>{{ $invoice->payment->discount_amount }}</strong></td>
+                  <td><strong>{{ $invoice->payment->discount_amount ?? 0 }}</strong></td>
                 </tr>
                 <tr class="text-center">
-                  <td colspan="6" class="text-right"><strong>Paid Amount:</strong></td>
-                  <td><strong>{{ $invoice->payment->paid_amount }}</strong></td>
-                </tr>
-                <tr class="text-center">
-                  <td colspan="6" class="text-right"><strong>Due Amount:</strong></td>
-                  <td><strong>{{ $invoice->payment->due_amount }}</strong></td>
+                  <td colspan="6" class="text-right"><strong>VAT Amount ({{$invoice->payment->vat_percent}}):</strong></td>
+                  <td><strong>{{ $invoice->payment->vat_amount }}</strong></td>
                 </tr>
                 <tr class="text-center">
                   <td colspan="6" class="text-right"><strong>Grant Total:</strong></td>

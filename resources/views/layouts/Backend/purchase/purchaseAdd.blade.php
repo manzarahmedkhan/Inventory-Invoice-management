@@ -129,21 +129,6 @@
 <!---- Ajax Request By Supplier --->
 <script type="text/javascript">
   $(function(){
-    // $(document).on('change','#supplier_id',function(){
-    //    var supplier_id = $(this).val();
-    //    $.ajax({
-    //     url:"{{ route('get.category') }}",
-    //     type:"GET",
-    //     data:{supplier_id:supplier_id},
-    //     success:function(data){
-    //       var html = '<option value="">Select Category</option>';
-    //       $.each(data,function(key,v){
-    //         html +='<option value="'+v.category_id+'">'+v.category.name+'</option>';
-    //       });
-    //       $('#category_id').html(html);
-    //     }
-    //    });
-    // });
 
     //get supplier and product details by product code
     $(document).on('keyup','#product_code',function(evtobj){
@@ -210,6 +195,7 @@
        });
     });
 
+    //check if product number exists and update category and product based on select
     $(document).on('change','#supplier_id',function(){
       var category_name = $(this).find('option:selected').attr('category_name');
       var product_description = $(this).find('option:selected').attr('product_name');
@@ -234,43 +220,7 @@
           }
        });
     });
-    //get product details by supplier
-    // $(document).on('change','#supplier_id',function(){
-    //    var supplier_id = $(this).val();
-    //    $.ajax({
-    //     url:"{{ route('get.productCode') }}",
-    //     type:"GET",
-    //     data:{supplier_id:supplier_id},
-    //     success:function(data){
-    //       var html = '<option value="">Select Product Code</option>';
-    //       $.each(data,function(key,v){
-    //         html +='<option value="'+v.id+'" product_name="'+v.name+'" category_id="'+v.category_id+'" category_name="'+v.category.name+'">'+v.code+'</option>';
-    //       });
-    //       $('#product_id').html(html);
-    //     }
-    //    });
-    // });
 
-  });
-</script>
-<!---- Ajax Request By Category --->
-<script type="text/javascript">
-  $(function(){
-    $(document).on('change','#category_id',function(){
-       var category_id = $(this).val();
-       $.ajax({
-        url:"{{ route('get.product') }}",
-        type:"GET",
-        data:{category_id,category_id},
-        success:function(data){
-          var html = '<option value="">Select Products</option>';
-          $.each(data,function(key,v){
-             html+='<option value="'+v.id+'">'+v.name+'</option>';
-          });
-          $('#product_id').html(html);
-        }
-       });
-    });
   });
 </script>
 @endpush
