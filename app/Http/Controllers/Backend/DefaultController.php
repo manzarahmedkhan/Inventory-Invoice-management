@@ -47,4 +47,11 @@ class DefaultController extends Controller
       //dd($product->toArray());
       return response()->json($product);
     }
+    //Get Product code
+    public function getProductCode(Request $request){
+       $supplier_id = $request->supplier_id;
+       $allCategory = product::select('id','code','category_id','name')->with(['category'])->where('supplier_id',$supplier_id)->get();
+       //dd($allCategory->toArray());
+       return response()->json($allCategory);
+    }
 }

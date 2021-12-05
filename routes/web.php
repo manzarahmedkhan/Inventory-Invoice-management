@@ -106,6 +106,7 @@ Route::group(['as'=>'purchase.', 'prefix'=>'purchase','namespace'=>'Backend','mi
 });
 // Default Route //
 Route::get('/getcategory', 'Backend\DefaultController@getCategory')->name('get.category');
+Route::get('/getProductCode', 'Backend\DefaultController@getProductCode')->name('get.productCode');
 Route::get('/getproduct', 'Backend\DefaultController@getProduct')->name('get.product');
 Route::get('/getInvoiceCategory', 'Backend\DefaultController@getInvoiceCategory')->name('get.invoice.category');
 Route::get('/get/Product/Quantity', 'Backend\DefaultController@getProductQuantity')->name('get.product.quantity');

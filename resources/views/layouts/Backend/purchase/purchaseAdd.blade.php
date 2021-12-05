@@ -7,11 +7,15 @@
       <input type="hidden" name="purchase_no[]" value="@{{purchase_no}}">
       <input type="hidden" name="supplier_id[]" value="@{{supplier_id}}">
       <td>
+        <input type="hidden" name="product_id[]" value="@{{product_id}}">
+        @{{product_code}}
+      </td>
+      <td>
         <input type="hidden" name="category_id[]" value="@{{category_id}}">
         @{{category_name}}
       </td>
       <td>
-        <input type="hidden" name="product_id[]" value="@{{product_id}}">
+        <input type="hidden" name="product_name[]" value="@{{product_name}}">
         @{{product_name}}
       </td>
       <td>
@@ -41,10 +45,14 @@
         var date          = $('#date').val();
         var purchase_no   = $('#purchase_no').val();
         var supplier_id   = $('#supplier_id').val();
-        var category_id   = $('#category_id').val();
-        var category_name = $('#category_id').find('option:selected').text();
+        // var category_id   = $('#category_id').val();
+        // var category_name = $('#category_id').find('option:selected').text();
+        // var product_name  = $('#product_id').find('option:selected').text();
+        var category_id   = $('#product_id').find('option:selected').attr('category_id');
+        var category_name = $('#product_id').find('option:selected').attr('category_name');
         var product_id    = $('#product_id').val();
-        var product_name  = $('#product_id').find('option:selected').text();
+        var product_name  = $('#product_id').find('option:selected').attr('product_name');
+        var product_code  = $('#product_id').find('option:selected').text();
         // validation
         if(date==''){
           $.notify("Date is required", {globalPosition: 'top right',className: 'error'});
@@ -58,10 +66,10 @@
           $.notify("Supplier is required", {globalPosition: 'top right',className: 'error'});
           return false;
         }
-        if(category_id==''){
-        $.notify("Category is required", {globalPosition: 'top right',className: 'error'});
-        return false;
-        }
+        // if(category_id==''){
+        // $.notify("Category is required", {globalPosition: 'top right',className: 'error'});
+        // return false;
+        // }
         if(product_id==''){
           $.notify("Product is required", {globalPosition: 'top right',className: 'error'});
           return false;
@@ -75,6 +83,7 @@
                   category_id:category_id,
                   category_name:category_name,
                   product_id:product_id,
+                  product_code:product_code,
                   product_name:product_name
             };
         var html = template(data);
@@ -112,21 +121,38 @@
 <!---- Ajax Request By Supplier --->
 <script type="text/javascript">
   $(function(){
+    // $(document).on('change','#supplier_id',function(){
+    //    var supplier_id = $(this).val();
+    //    $.ajax({
+    //     url:"{{ route('get.category') }}",
+    //     type:"GET",
+    //     data:{supplier_id:supplier_id},
+    //     success:function(data){
+    //       var html = '<option value="">Select Category</option>';
+    //       $.each(data,function(key,v){
+    //         html +='<option value="'+v.category_id+'">'+v.category.name+'</option>';
+    //       });
+    //       $('#category_id').html(html);
+    //     }
+    //    });
+    // });
+
     $(document).on('change','#supplier_id',function(){
        var supplier_id = $(this).val();
        $.ajax({
-        url:"{{ route('get.category') }}",
+        url:"{{ route('get.productCode') }}",
         type:"GET",
         data:{supplier_id:supplier_id},
         success:function(data){
-          var html = '<option value="">Select Category</option>';
+          var html = '<option value="">Select Product Code</option>';
           $.each(data,function(key,v){
-            html +='<option value="'+v.category_id+'">'+v.category.name+'</option>';
+            html +='<option value="'+v.id+'" product_name="'+v.name+'" category_id="'+v.category_id+'" category_name="'+v.category.name+'">'+v.code+'</option>';
           });
-          $('#category_id').html(html);
+          $('#product_id').html(html);
         }
        });
     });
+
   });
 </script>
 <!---- Ajax Request By Category --->
@@ -196,22 +222,31 @@
                                   </div>
                                   <div class="col-lg-6">
                                         <div class="form-group">
+                                          <label>Product</label>
+                                          <select name="product_id" class="form-control select2" id="product_id">
+                                            <option value="">
+                                            *Select Product Code* 
+                                          </select>   
+                                       </div> 
+                                  </div>
+                                 <!--  <div class="col-lg-6">
+                                        <div class="form-group">
                                           <label>Category</label>
                                           <select name="category_id" class="form-control select2" id="category_id">
                                             <option value="">
                                             *Select Category* 
                                           </select>   
                                        </div> 
-                                  </div>
+                                  </div> -->
                         <!---- From Two Colum Start ---->
                                <div class="col-lg-9">
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                           <label>Product</label>
                                           <select name="product_id" class="form-control select2" id="product_id">
                                             <option value="">
                                             *Select Product* 
                                           </select>   
-                                       </div> 
+                                       </div>  -->
                                 </div>
 
                                  <div class="col-lg-3">
@@ -231,6 +266,7 @@
                <table class="table-sm table-bordered" width="100%">
                     <thead>
                       <tr>
+                        <th>Product Code</th>
                         <th>Category</th>
                         <th>Product Name</th>
                         <th width="7%">Pcs/Kg</th>
@@ -245,7 +281,7 @@
                       
                     </tbody>
                     <tbody>
-                        <td colspan="6"></td>
+                        <td colspan="7"></td>
                         <td>
                           <input type="text" name="estimated_amount" value="0" id="estimated_amount" class="form-control form-control-sm text-right estimated_amount" readonly style="background-color: #D8FDBA">
                         </td>

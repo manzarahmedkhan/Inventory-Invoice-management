@@ -17,17 +17,17 @@
                   <thead>
                     <tr>
                       <!-- <th>SL.</th> -->
-                      <th>Supplier Name</th>
+                      <th>Supplier</th>
                       <th>Product Code</th>
                       <th>Category Name</th>
                       <th>Product Name</th>
                       <th>Purchase No.</th>
-                      <th>Date</th> 
-                      <th>Quantity</th>
+                      <th width="20%">Date</th> 
+                      <th>Qty</th>
                       <th>Unit Price</th>
                       <th>VAT Amount</th>
                       <th>Total Price</th>
-                      <th>Description</th>
+                      <!-- <th>Description</th> -->
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
@@ -41,7 +41,7 @@
                        <td>{{ $prachase->category->name }}</td>
                        <td>{{ $prachase['product']['name'] }}</td>
                        <td>{{ $prachase->purchase_no }}</td>
-                       <td>{{ date('d-m-Y', strtotime($prachase->date)) }}</td>
+                       <td  width="20%">{{ date('d-m-Y', strtotime($prachase->date)) }}</td>
                        <td>
                         {{ $prachase->buying_qty }}
                         {{ $prachase->product->unit->name }}
@@ -49,7 +49,7 @@
                        <td>{{ $prachase->unit_price }}</td>
                        <td>{{ $prachase->vat_amount }}</td>
                        <td>{{ $prachase->buying_price }}</td>
-                       <td>{{ $prachase->description }}</td>
+                       <!-- <td>{{ $prachase->description }}</td> -->
                        <td>
                          @if($prachase->status == '0')
                          <span class="btn btn-danger">Pending</span>
