@@ -18,8 +18,9 @@
                     <tr>
                       <th>SL.</th>
                       <th>Supplier Name</th>
+                      <th>Item Code</th>
                       <th>Product Category</th>
-                      <th>Product Name</th>
+                      <th>Description</th>
                       <th>In (Stock)</th>
                       <th>Out (Stock)</th>
                       <th>Current Stock</th>
@@ -34,6 +35,7 @@
                      <tr>
                        <td>{{ $key+1 }}</td>
                        <td>{{ $product['supplier']['name'] }}</td>
+                       <td>{{ $product->code }}</td>
                        <td>{{ $product->category->name }}</td>
                        <td>{{ $product->name }}</td>
                        <td>
