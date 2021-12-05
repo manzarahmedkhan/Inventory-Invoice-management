@@ -16,8 +16,9 @@
                     <tr>
                       <th>SL.</th>
                       <th>Supplier Name</th>
+                      <th>Item Code</th>
                       <th>Category Name</th>
-                      <th>Product Name</th>
+                      <th>Description</th>
                       <th>Purchase No.</th>
                       <th>Date</th> 
                       <th>Quantity</th>
@@ -33,6 +34,7 @@
                      <tr>
                        <td>{{ $key+1 }}</td>
                        <td>{{ $prachase->supplier->name }}</td>
+                       <td>{{ $prachase['product']['code'] }}</td>
                        <td>{{ $prachase->category->name }}</td>
                        <td>{{ $prachase['product']['name'] }}</td>
                        <td>{{ $prachase->purchase_no }}</td>
