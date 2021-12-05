@@ -30,7 +30,6 @@ class purchaseController extends Controller
     }
     // Purchase Store //
     public function store(Request $request){
-        dd($request->all());
         if($request->category_id == null){
             return redirect()->back()->with('error', 'Please Purchase The Product');
         } else{
