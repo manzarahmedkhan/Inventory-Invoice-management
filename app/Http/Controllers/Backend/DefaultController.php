@@ -37,21 +37,27 @@ class DefaultController extends Controller
     public function getProductQuantity(Request $request){
        $product_id = $request->product_id;
        $productQuantity = product::where('id',$product_id)->first()->quantity;
-       //dd($productQuantity);
        return response()->json($productQuantity);
     }
     // Product Wais Report PDF //
     public function getProductWaisReport(Request $request){
       $category_id = $request->category_id;
       $product = product::where('category_id', $category_id)->get();
-      //dd($product->toArray());
       return response()->json($product);
     }
+
     //Get Product code
     public function getProductCode(Request $request){
        $supplier_id = $request->supplier_id;
        $allCategory = product::select('id','code','category_id','name')->with(['category'])->where('supplier_id',$supplier_id)->get();
-       //dd($allCategory->toArray());
+       return response()->json($allCategory);
+    }
+
+    //Get Supplier and product details from Product code
+    public function getSupplier(Request $request){
+       $code = $request->code;
+       $allCategory = product::select('id','category_id','name','supplier_id')->with(['category','supplier'])->where('code',$code)->get();
+       // dd($allCategory);
        return response()->json($allCategory);
     }
 }

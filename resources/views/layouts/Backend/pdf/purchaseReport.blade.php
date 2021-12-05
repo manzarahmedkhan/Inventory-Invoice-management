@@ -21,9 +21,10 @@
 	<thead>
 		<tr>
 			<td>SL.</td>
-			<td>Supplier Name</td>
-			<td>Category Name</td>
-			<td>Product Name</td>
+			<td>Supplier</td>
+			<td>Item Code</td>
+			<td>Category</td>
+			<td>Item</td>
 			<td>Buying Quantity</td>
 			<td>Unit Price</td>
 			<td>Buying Price</td>
@@ -37,6 +38,7 @@
 		<tr>
 			<td>{{ $key+1 }}</td>
 			<td>{{ $purchase->supplier->name }}</td>
+			<td>{{ $purchase->product->code }}</td>
 			<td>{{ $purchase->category->name }}</td>
 			<td>{{ $purchase->product->name }}</td>
 			<td>{{ $purchase->buying_qty }}</td>
@@ -48,7 +50,7 @@
 		@endphp
 		@endforeach
 		<tr>
-			<td style="text-align: right; color:green;" colspan="6">Sub Total:-</td>
+			<td style="text-align: right; color:green;" colspan="7">Sub Total:-</td>
 			<td style="color:green;">{{ $subTotal }}</td>
 		</tr>
 	</tbody>

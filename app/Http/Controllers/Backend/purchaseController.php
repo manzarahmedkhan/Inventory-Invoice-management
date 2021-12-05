@@ -43,6 +43,7 @@ class purchaseController extends Controller
                 $purchase->product_id   = $request->product_id[$i];
                 $purchase->buying_qty   = $request->buying_qty[$i];
                 $purchase->unit_price   = $request->unit_price[$i];
+                $purchase->vat_percent  = $request->vat_percent[$i];
                 $purchase->vat_amount   = $request->vat_amount[$i];
                 $purchase->buying_price = $request->buying_price[$i];
                 $purchase->description  = $request->description[$i];
@@ -100,5 +101,14 @@ class purchaseController extends Controller
         $pdf = PDF::loadView('layouts.Backend.pdf.purchaseReport', $data);
         $pdf->SetProtection(['copy', 'print'], '', 'pass');
         return $pdf->stream('document.pdf');
+      }
+
+      public function checkPurchaseNo(Request $request){
+        // dd($request->all());
+        $checkExists = purchase::where('purchase_no',$request->purchase_no)->where('supplier_id',$request->supplier_id)->first();
+        if(!$checkExists){
+            return false;
+        }
+        return true;
       }
 }

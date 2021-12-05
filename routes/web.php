@@ -91,7 +91,7 @@ Route::group(['as'=>'products.', 'prefix'=>'products','namespace'=>'Backend','mi
    Route::get('/edit/{id}','productController@edit')->name('edit');
    Route::post('/update/{id}','productController@update')->name('update');
    Route::get('/delete/{id}','productController@delete')->name('delete');
-   Route::post('/checkCodeExists','productController@checkCodeExists')->name('checkCodeExists');
+   Route::get('/checkCodeExists','productController@checkCodeExists')->name('checkCodeExists');
 });
 // Purchase Route //
 Route::group(['as'=>'purchase.', 'prefix'=>'purchase','namespace'=>'Backend','middleware'=>'checkvalidUsers'], function(){
@@ -103,10 +103,12 @@ Route::group(['as'=>'purchase.', 'prefix'=>'purchase','namespace'=>'Backend','mi
    Route::get('/delete/{id}','purchaseController@delete')->name('delete');
    Route::get('/report','purchaseController@purchaseReport')->name('report');
    Route::get('/report/pdf','purchaseController@purchaseReportpdf')->name('report.pdf');
+   Route::get('/checkPurchaseNo', 'purchaseController@checkPurchaseNo')->name('checkPurchaseNo');
 });
 // Default Route //
 Route::get('/getcategory', 'Backend\DefaultController@getCategory')->name('get.category');
 Route::get('/getProductCode', 'Backend\DefaultController@getProductCode')->name('get.productCode');
+Route::get('/getSupplier', 'Backend\DefaultController@getSupplier')->name('get.supplier');
 Route::get('/getproduct', 'Backend\DefaultController@getProduct')->name('get.product');
 Route::get('/getInvoiceCategory', 'Backend\DefaultController@getInvoiceCategory')->name('get.invoice.category');
 Route::get('/get/Product/Quantity', 'Backend\DefaultController@getProductQuantity')->name('get.product.quantity');

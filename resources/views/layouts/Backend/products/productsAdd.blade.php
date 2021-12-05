@@ -108,16 +108,6 @@
 @section('js')
 <script type="text/javascript">
 $(document).ready(function(){  
-
-  // $(document).on('change','#supplier_id', function(){
-  //    var paid_status = $(this).val();
-  //    if(paid_status == 'Partical_paid') {
-  //     $('.paid_amount').show();
-  //    } else{
-  //     $('.paid_amount').hide();
-  //    }
-  // });
-
   $(document).on('keyup', '#code', function (evtobj) {
     if (!(evtobj.altKey || evtobj.ctrlKey || evtobj.shiftKey)){
        if (evtobj.keyCode == 16) {return false;}
@@ -129,13 +119,13 @@ $(document).ready(function(){
     var ref = $(this);  
     var code = ref.val(); 
     $.ajax({
-        url: "checkCodeExists",
+        url: "{{ route('products.checkCodeExists') }}",
         data: {
            '_token': token,
            'code'  : code,
            'supplier_id'  : supplier_id
         },
-        type: 'POST',
+        type: 'GET',
         success: function(response) {
            if(response == 1){
              $.notify("Product Code Already Exists for this Supplier",{globalPosition:'top right',className:'error'});
@@ -154,13 +144,13 @@ $(document).ready(function(){
     var supplier_id = $('[name="supplier_id"]').val();
     var code = $('#code').val();
     $.ajax({
-        url: "checkCodeExists",
+        url: "{{ route('products.checkCodeExists') }}",
         data: {
            '_token': token,
            'code'  : code,
            'supplier_id'  : supplier_id
         },
-        type: 'POST',
+        type: 'GET',
         success: function(response) {
            if(response == 1){
              $.notify("Product Code Already Exists for this Supplier",{globalPosition:'top right',className:'error'});
