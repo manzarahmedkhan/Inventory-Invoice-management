@@ -152,17 +152,30 @@
          if (evtobj.keyCode == 17) {return false;}
          // $("body").append(evtobj.keyCode + " ");
       }
+      var selected = "";
+      $('.supplier_input').val('');
       $('#category_name').val('');
-          $('#product_description').val('');
+      $('#product_description').val('');
+
       var code = $(this).val();
       $.ajax({
         url:"{{ route('get.supplier') }}",
         type:"GET",
         data:{code:code},
         success:function(data){
+          var dataCount = Object.keys(data).length;
           var html = '<option value="">Select Supplier</option>';
           $.each(data,function(key,v){
-            html +='<option value="'+v.supplier.id+'" product_id="'+v.id+'" product_name="'+v.name+'" category_id="'+v.category.id+'" category_name="'+v.category.name+'">'+v.supplier.name+'</option>';
+            if(dataCount == 1){
+              var selected = "selected";
+              $('.supplier_input').val(v.supplier.name);
+              $('.supplier_input').show();
+              $('.supplier_select').hide();
+            }else{
+              $('.supplier_select').show();
+              $('.supplier_input').hide();
+            }
+            html +='<option value="'+v.supplier.id+'" product_id="'+v.id+'" product_name="'+v.name+'" category_id="'+v.category.id+'" category_name="'+v.category.name+'"'+selected+'>'+v.supplier.name+'</option>';
           $('#category_name').val(v.category.name);
           $('#product_description').val(v.name);
           });
@@ -296,10 +309,13 @@
                                   <div class="col-lg-3">
                                        <div class="form-group">
                                           <label>Supplier Name</label>
+                                          <input type="text" name="supplier_input" id="supplier_input" class="form-control form-control-sm supplier_input" readonly="" style="display: none;" >
+                                          <span class="supplier_select">
                                           <select name="supplier_id" class="form-control select2" id="supplier_id">
                                             <option value="">
                                             *Select Supplier* 
                                           </select> 
+                                          </span>
                                            @error('supplier_id')
                                            <strong class="alert alert-danger">{{ $message }}
                                            </strong>
