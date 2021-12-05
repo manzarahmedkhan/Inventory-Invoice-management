@@ -112,12 +112,15 @@
             		@endforeach
             	</tbody>
             </table>
-@php 
-$date = new DateTime('now', new DateTimezone('Asia/Dhaka'));
+@php
+	$date = new DateTime('now', new DateTimezone('Asia/Riyadh'));
+	if(env('DATETIMEZONE')){
+		$date = new DateTime('now', new DateTimezone(env('DATETIMEZONE')));
+	} 
 @endphp
 <br>
 <strong>
-	Printing Time:- {{ $date->format('F j, Y, g:i a') }}
+	Date/Time :- {{ $date->format('d-m-Y H:i A') }}
 </strong>
 <hr>
 <table width="100%">

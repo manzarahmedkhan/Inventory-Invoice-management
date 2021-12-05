@@ -153,7 +153,7 @@
 </table>
 <!-- <br>
 <strong>
-	Printing Time:- {{ $date->format('F j, Y, g:i a') }}
+	Date/Time :- {{ $date->format('d-m-Y H:i A') }}
 </strong> -->
 <!-- <hr> -->
 <div id="footer">
