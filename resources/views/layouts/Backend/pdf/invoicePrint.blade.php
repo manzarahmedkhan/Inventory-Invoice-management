@@ -123,7 +123,7 @@
     	<td>{{ $invoiceDetal->product->name }}</td>
     	<td>{{ $invoiceDetal->selling_qty }}</td>
     	<td>{{ $invoiceDetal->unit_price }}</td>
-    	<td>{{ $invoiceDetal->selling_price }}</td>
+    	<td>{{ number_format($invoiceDetal->selling_price,2) }}</td>
       </tr>
       @php
       $subTotal += $invoiceDetal->selling_price;
@@ -131,15 +131,15 @@
     @endforeach
     <tr>
     	<td colspan="4" style="text-align: right;">Sub Total:-</td>
-    	<td>{{ $subTotal }}</td>
+    	<td>{{ number_format($subTotal,2) }}</td>
     </tr>
     <tr>
     	<td colspan="4" style="text-align: right;">Discount Amount:-</td>
-    	<td >-{{ $invoice->payment->discount_amount ?? 0.00 }}</td>
+    	<td >-{{ $invoice->payment->discount_amount ? number_format($invoice->payment->discount_amount,2) : 0.00 }}</td>
     </tr>
     <tr>
     	<td colspan="4" style="text-align: right;">VAT Amount:-</td>
-    	<td>{{ $invoice->payment->vat_amount ?? 0.00 }}</td>
+    	<td>{{ number_format($invoice->payment->vat_amount,2) }}</td>
     </tr>
     <!-- <tr>
     	<td colspan="4" style="text-align: right;">Paid Amount:-</td>
@@ -151,7 +151,7 @@
     </tr> -->
     <tr>
     	<td colspan="4" style="text-align: right;">Grand Total:-</td>
-    	<td>{{ $invoice->payment->total_amount }}</td>
+    	<td>{{ number_format($invoice->payment->total_amount,2) }}</td>
     </tr>
     </tbody>
 </table>
