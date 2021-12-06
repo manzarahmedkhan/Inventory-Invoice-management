@@ -179,7 +179,7 @@
 	<span style="font-size: 15px;color: green">
 		{{ Auth::user()->address}} @if(!empty(Auth::user()->arabic_number_1))| {{Auth::user()->number}} @endif @if(!empty(Auth::user()->arabic_number_2))| {{Auth::user()->number_2}} @endif @if(!empty(Auth::user()->arabic_number_3))| {{Auth::user()->number_3}}@endif
 	</span>	
+	<br><br>
 </div>
-<br>
 </body>
 </html>
