@@ -188,11 +188,11 @@
 </table>
   	<hr style="margin:0 !important">
   	<span style="font-size: 16px;color: #4e73df">
-  	  {{ Auth::user()->arabic_address}} @if(!empty(Auth::user()->arabic_number_1))| {{Auth::user()->arabic_number}} @endif @if(!empty(Auth::user()->arabic_number_2))| {{Auth::user()->arabic_number_2}} @endif @if(!empty(Auth::user()->arabic_number_3))| {{Auth::user()->arabic_number_3}}@endif
+  	  {{ Auth::user()->arabic_address}} @if(!empty(Auth::user()->arabic_number))| {{Auth::user()->arabic_number}} @endif @if(!empty(Auth::user()->arabic_number_2))| {{Auth::user()->arabic_number_2}} @endif @if(!empty(Auth::user()->arabic_number_3))| {{Auth::user()->arabic_number_3}}@endif
   	</span>
 	<br>
 	<span style="font-size: 15px;color: green">
-		{{ Auth::user()->address}} @if(!empty(Auth::user()->arabic_number_1))| {{Auth::user()->number}} @endif @if(!empty(Auth::user()->arabic_number_2))| {{Auth::user()->number_2}} @endif @if(!empty(Auth::user()->arabic_number_3))| {{Auth::user()->number_3}}@endif
+		{{ Auth::user()->address}} @if(!empty(Auth::user()->number))| {{Auth::user()->number}} @endif @if(!empty(Auth::user()->number_2))| {{Auth::user()->number_2}} @endif @if(!empty(Auth::user()->number_3))| {{Auth::user()->number_3}}@endif
 	</span>	
 	<br><br>
 </div>
