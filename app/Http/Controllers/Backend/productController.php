@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\Model\product;
 use App\Model\supplier;
 use App\Model\unit;
 use App\Model\category;
 use Auth;
+use DB;
+use Session;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -95,8 +98,12 @@ class productController extends Controller
     }
 
     public function uploadExcel(Request $request){
+        ini_set('post_max_size', '64M');
+        ini_set('upload_max_filesize', '64M');
+
         $filepath  = $request->attachment;
         $readexcel = $this->Readexcel($filepath);
+
         if (empty($readexcel['error'] == 0)) {
 
             $error['error_message']   = 'File is  unreadable.';
@@ -105,54 +112,74 @@ class productController extends Controller
 
         $sheet_data = array_filter($readexcel['sheet_data']);
         unset($sheet_data[1],$sheet_data[2]);
-dd($sheet_data);
-        foreach ($sheet_data as $sheet_data_loop) {
-            $validator = Validator::make($sheet_data_loop, [
-                'A'  => 'required',
-                'B'  => 'required',
-                'C'  => 'required',
-                'D'  => 'required',
-                'E'  => 'required'
-                'F'  => 'required'
-                'G'  => 'required'
-            ]);
+        DB::beginTransaction();
 
-            if ($validator->fails()) {
-                return Redirect::back()
-                    ->withErrors($validator)
-                    ->withInput();
+        try {
+            foreach ($sheet_data as $key => $sheet_data_loop) {
+                $validator = Validator::make($sheet_data_loop, [
+                    'A'  => 'required',
+                    'B'  => 'required',
+                    'C'  => 'required',
+                    'D'  => 'required',
+                    // 'E'  => 'required',
+                    // 'F'  => 'required',
+                    'G'  => 'required',
+                    'H'  => 'required'
+                ],[
+                    'A.required'  => 'Item Code in row '.$key.' is missing!!',
+                    'B.required'  => 'Category in row '.$key.' is missing!!',
+                    'C.required'  => 'Description in row '.$key.' is missing!!',
+                    'D.required'  => 'Unit in row '.$key.' is missing!!',
+                    // 'E.required'  => 'Quantity in row '.$key.' is missing!!',
+                    // 'F.required'  => 'Unit Price in row '.$key.' is missing!!',
+                    'G.required'  => 'Supplier name in row '.$key.' is missing!!',
+                    'H.required'  => 'Supplier number in row '.$key.' is missing!!'
+                ]);
+                if ($validator->fails()) {
+                    Session::flash('error', $validator->errors()->first());
+                }    
+
+                if (!$validator->fails()) {
+
+                    $supplier = supplier::updateOrCreate(['name' => $sheet_data_loop['G']],[
+                            'name'   => $sheet_data_loop['G'],
+                            'mobile' => str_replace(' ', '', $sheet_data_loop['H']),
+                            'created_by' => Auth::id(),
+                    ]);
+                    $unit = unit::updateOrCreate(['name' => $sheet_data_loop['D']],[
+                            'name' => $sheet_data_loop['D'],
+                            'created_by' => Auth::id(),
+                            'update_by' => Auth::id(),
+                    ]);
+
+                    $category = category::updateOrCreate(['name' => $sheet_data_loop['B']],[
+                            'name' => $sheet_data_loop['B'],
+                            'created_by' => Auth::id(),
+                    ]);
+
+                    $unit = product::updateOrCreate(['code' => $sheet_data_loop['A'],'supplier_id' => $supplier->id],[
+                            'supplier_id' => $supplier->id,
+                            'unit_id' => $unit->id,
+                            'category_id' => $category->id,
+                            'code' => $sheet_data_loop['A'],
+                            'name' => $sheet_data_loop['C'],
+                            'created_by' => Auth::id(),
+                            'update_by' => Auth::id(),
+                    ]);
+                }
+
             }
+            DB::commit();
+            return redirect()->route('products.uploadExcelView')->with('success', 'Products Updated Successfully');
 
-            $supplier = supplier::updateOrCreate(['name' => $sheet_data_loop['F']],[
-                    'name'   => $sheet_data_loop['F'],
-                    'mobile' => str_replace(' ', '', $sheet_data_loop['G']),
-                    'created_by' => Auth::id(),
-            ]);
-            $unit = unit::updateOrCreate(['name' => $sheet_data_loop['C']],[
-                    'name' => $sheet_data_loop['F'],
-                    'created_by' => Auth::id(),
-                    'update_by' => Auth::id(),
-            ]);
+            } catch (\Exception $e) {
+                DB::rollback();
 
-            $category = category::updateOrCreate(['name' => $sheet_data_loop['D']],[
-                    'name' => $sheet_data_loop['G'],
-                    'created_by' => Auth::id(),
-                    'update_by' => Auth::id(),
-            ]);
+                $response['status'] = 500;
+                $response['error'] = $e->getMessage();
 
-            $unit = product::updateOrCreate(['code' => $sheet_data_loop['A']],[
-                    'supplier_id' => $supplier->id,
-                    'unit_id' => $unit->id,
-                    'category_id' => $unit->id,
-                    'code' => $sheet_data_loop['A'],
-                    'created_by' => Auth::id(),
-                    'update_by' => Auth::id(),
-            ]);
-            dd($supplier->id);
-            // $error['storage_folder_Path'] = $storage_folder_Path;
-            $error['error_message'] = 'File Uploaded Successfully';
-            return $error;
-        }
+                return $response;
+            }
     }
 
      public function Readexcel($filepath)

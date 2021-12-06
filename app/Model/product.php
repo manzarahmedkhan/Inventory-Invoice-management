@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class product extends Model
 {
+    protected $fillable = [
+        'name', 'code','supplier_id', 'category_id','unit_id'
+    ];
+
     public function supplier(){
     	return $this->belongsTo(supplier::class,'supplier_id','id');
     }

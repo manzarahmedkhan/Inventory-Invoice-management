@@ -26,6 +26,20 @@
       @include('layouts.Backend.partials.sidebar')
       @include('layouts.Backend.partials.topnavigation')
 
+      <!-- Errors -->
+      <div class="container-fluid status-block">
+        <div class="card-body">
+          @if ($errors->any())
+            <div class="alert alert-danger">
+              <ul>
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+        </div>
+      </div>
       <!-- Begin Page Content -->
         <div class="container-fluid">
             @yield('content')
@@ -107,6 +121,7 @@
   <script src="{{ asset('assets/Backend/select2/js/select2.min.js') }}"></script>
   @stack('js')
   @stack('ajax')
+
   <!---- Success Message -->
   @if(session()->has('success'))
     <script type="text/javascript">

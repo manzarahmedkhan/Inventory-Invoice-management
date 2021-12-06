@@ -18,10 +18,10 @@
                     <tr>
                       <th>SL.</th>
                       <th>Supplier Name</th>
-                      <th>Stock</th>
-                      <th>Category</th>
                       <th>Code</th>
+                      <th>Category</th>
                       <th>Description</th>
+                      <th>Stock</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -30,13 +30,13 @@
                      <tr>
                        <td>{{ $key+1 }}</td>
                        <td>{{ $product['supplier']['name'] }}</td>
+                       <td>{{ $product->code }}</td>
+                       <td>{{ $product->category->name }}</td>
+                       <td>{{ $product->name }}</td>
                        <td>
                         {{ $product->quantity }}
                         {{ $product['unit']['name'] }}
                        </td>
-                       <td>{{ $product->category->name }}</td>
-                       <td>{{ $product->code }}</td>
-                       <td>{{ $product->name }}</td>
                        @php 
                        $productCount = App\Model\purchase::where('product_id', $product->id)->count();
                        @endphp
