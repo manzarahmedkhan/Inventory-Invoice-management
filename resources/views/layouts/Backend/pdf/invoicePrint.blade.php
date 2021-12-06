@@ -135,7 +135,7 @@
     </tr>
     <tr>
     	<td colspan="4" style="text-align: right;">Discount Amount:-</td>
-    	<td align="right">-{{ $invoice->payment->discount_amount == 0 ? number_format($invoice->payment->discount_amount,2) : 0.00 }}</td>
+    	<td align="right">-{{ isset($invoice->payment->discount_amount) > 0 ? number_format($invoice->payment->discount_amount,2) : 0.00 }}</td>
     </tr>
     <tr>
     	<td colspan="4" style="text-align: right;">VAT Amount:-</td>
