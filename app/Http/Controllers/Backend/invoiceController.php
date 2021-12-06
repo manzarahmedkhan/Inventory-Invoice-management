@@ -65,8 +65,8 @@ class invoiceController extends Controller
                         $invoiceDetail->product_id    = $request->product_id[$i];
                         $invoiceDetail->supplier_id   = $request->supplier_id[$i];
                         $invoiceDetail->selling_qty   = $request->selling_qty[$i];
-                        $invoiceDetail->unit_price    = $request->unit_price[$i];
-                        $invoiceDetail->selling_price = $request->selling_price[$i];
+                        $invoiceDetail->unit_price    = number_format($request->unit_price[$i],2);
+                        $invoiceDetail->selling_price = number_format($request->selling_price[$i],2);
                         $invoiceDetail->status        = '0';
                         $invoiceDetail->save();
                     }
@@ -92,14 +92,14 @@ class invoiceController extends Controller
                      $payment->invoice_id      = $invoice->id;
                      $payment->customer_id     = $customer_id;
                      $payment->paid_status     = $request->paid_status;
-                     $payment->total_amount    = $request->estimated_amount;
-                     $payment->discount_amount = $request->discount_amount;
+                     $payment->total_amount    = number_format($request->estimated_amount,2);
+                     $payment->discount_amount = number_format($request->discount_amount,2);
                      if($request->paid_status == 'full_paid'){
                         $payment->vat_percent = $request->vat_percent;
-                        $payment->vat_amount  = $request->vat_amount;
-                        $payment->paid_amount = $request->estimated_amount;
+                        $payment->vat_amount  = number_format($request->vat_amount,2);
+                        $payment->paid_amount = number_format($request->estimated_amount,2);
                         $payment->due_amount  = '0';
-                        $paymentDetail->current_paid_amount = $request->estimated_amount;
+                        $paymentDetail->current_paid_amount = number_format($request->estimated_amount,2);
                      } elseif($request->paid_status == 'full_due'){
                         $payment->paid_amount = '0';
                         $payment->due_amount  = $request->estimated_amount;

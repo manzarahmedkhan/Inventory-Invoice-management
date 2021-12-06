@@ -43,7 +43,7 @@
 				    </span>
 			    </td>
 			    <td align="right">
-				    <span style="font-size: 17px;">
+				    <span style="font-size: 15px;">
 				    	{{Auth::user()->arabic_description}} <br>
 				    	{{Auth::user()->arabic_CR_no}}	
 				    </span>
@@ -56,17 +56,20 @@
     <tbody class="text-center">
 			<tr>
 			   <td align="left">
-				    <h3 class="text-dark"><strong>Invoice No:- {{ $invoice->invoice_no }}</strong></h3>
+				    <span style="font-size: 17px;">
+				    	Invoice No : <strong>{{ sprintf("%05d", $invoice->invoice_no) }}</strong>
+				    </span>
 			    </td>
-			    <td align="right"><h4 class="text-dark">
+			    <td align="right">
+		    	 <span style="font-size: 15px;text-align:right;">
 		    		@php
 						$date = new DateTime('now', new DateTimezone('Asia/Riyadh'));
 						if(env('DATETIMEZONE')){
 							$date = new DateTime('now', new DateTimezone(env('DATETIMEZONE')));
 						} 
 					@endphp
-		    		<strong style="text-align:right">Date/Time :- {{ $date->format('d-m-Y H:i A') }}</strong>
-				</h4>
+		    		Date/Time : {{ $date->format('d-m-Y H:i A') }}
+				 </span>
 		    	</td>
 			</tr>
 	</tbody>
@@ -83,14 +86,15 @@
 	<tbody>
 	  <tr>
 	  <td colspan="4">	
-		<h5 class="text-dark">
-		 <strong>Customer Name :- {{ $invoice->payment->customer->name }} </strong>
-		</h5>
+		<span style="font-size: 15px;">
+		 Customer Name : <strong>{{ $invoice->payment->customer->name }} </strong>
+		</span>
 	  </td>
 	  	@if($invoice->payment->customer->mobile)
-		<td colspan="4"><h5 class="text-dark">
-		 <strong>Mobile :- {{ $invoice->payment->customer->mobile }}</strong>
-		</h5>
+		<td colspan="4">
+		<span style="font-size: 15px;">
+		 Mobile : {{ $invoice->payment->customer->mobile }}
+		</span>
 	    </td>
 	    @endif
 	  </tr>
@@ -100,12 +104,12 @@
 <table width="100%" border="1" style="text-align: center;border-color: #DDD;">
 	<thead style="background:#cdced2;">
         <tr>
-           <th width="10%">SR NO.</th>
+           <th width="6%">s.r#</th>
            <!-- <th>Category Name</th> -->
-           <th width="30%">Description</th>
-           <th width="20%">Quantity</th>
-           <th width="20%">Unit Price</th>
-           <th width="20%">Total Price</th>
+           <th width="">Description</th>
+           <th width="8%">Qty.</th>
+           <th width="12%">Unit Price</th>
+           <th width="15%">Total Price</th>
         </tr>
     </thead>
     <tbody>
@@ -131,11 +135,11 @@
     </tr>
     <tr>
     	<td colspan="4" style="text-align: right;">Discount Amount:-</td>
-    	<td>{{ $invoice->payment->discount_amount ?? 0 }}</td>
+    	<td >-{{ $invoice->payment->discount_amount ?? 0.00 }}</td>
     </tr>
     <tr>
     	<td colspan="4" style="text-align: right;">VAT Amount:-</td>
-    	<td>{{ $invoice->payment->vat_amount }}</td>
+    	<td>{{ $invoice->payment->vat_amount ?? 0.00 }}</td>
     </tr>
     <!-- <tr>
     	<td colspan="4" style="text-align: right;">Paid Amount:-</td>
@@ -146,7 +150,7 @@
     	<td>{{ $invoice->payment->due_amount }}</td>
     </tr> -->
     <tr>
-    	<td colspan="4" style="text-align: right;">Grant Total:-</td>
+    	<td colspan="4" style="text-align: right;">Grand Total:-</td>
     	<td>{{ $invoice->payment->total_amount }}</td>
     </tr>
     </tbody>
