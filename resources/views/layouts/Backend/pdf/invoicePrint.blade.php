@@ -104,9 +104,9 @@
 <table width="100%" border="1" style="text-align: center;border-color: #DDD;">
 	<thead style="background:#cdced2;">
         <tr>
-           <th width="6%">s.r#</th>
+           <th width="6%">Sr.#</th>
            <!-- <th>Category Name</th> -->
-           <th width="">Description</th>
+           <th>Description</th>
            <th width="8%">Qty.</th>
            <th width="12%">Unit Price</th>
            <th width="15%">Total Price</th>
@@ -120,10 +120,10 @@
       <tr>
     	<td>{{ $key+1 }}</td>
     	<!-- <td>{{ $invoiceDetal->category->name }}</td> -->
-    	<td>{{ $invoiceDetal->product->name }}</td>
+    	<td align="left">{{ $invoiceDetal->product->name }}</td>
     	<td>{{ $invoiceDetal->selling_qty }}</td>
-    	<td>{{ $invoiceDetal->unit_price }}</td>
-    	<td>{{ number_format($invoiceDetal->selling_price,2) }}</td>
+    	<td align="right">{{ number_format($invoiceDetal->unit_price,2) }}</td>
+    	<td align="right">{{ number_format($invoiceDetal->selling_price,2) }}</td>
       </tr>
       @php
       $subTotal += $invoiceDetal->selling_price;
@@ -131,15 +131,15 @@
     @endforeach
     <tr>
     	<td colspan="4" style="text-align: right;">Sub Total:-</td>
-    	<td>{{ number_format($subTotal,2) }}</td>
+    	<td align="right">{{ number_format($subTotal,2) }}</td>
     </tr>
     <tr>
     	<td colspan="4" style="text-align: right;">Discount Amount:-</td>
-    	<td >-{{ $invoice->payment->discount_amount ? number_format($invoice->payment->discount_amount,2) : 0.00 }}</td>
+    	<td align="right">-{{ $invoice->payment->discount_amount == 0 ? number_format($invoice->payment->discount_amount,2) : 0.00 }}</td>
     </tr>
     <tr>
     	<td colspan="4" style="text-align: right;">VAT Amount:-</td>
-    	<td>{{ number_format($invoice->payment->vat_amount,2) }}</td>
+    	<td align="right">{{ number_format($invoice->payment->vat_amount,2) }}</td>
     </tr>
     <!-- <tr>
     	<td colspan="4" style="text-align: right;">Paid Amount:-</td>
@@ -151,7 +151,7 @@
     </tr> -->
     <tr>
     	<td colspan="4" style="text-align: right;">Grand Total:-</td>
-    	<td>{{ number_format($invoice->payment->total_amount,2) }}</td>
+    	<td align="right">{{ number_format($invoice->payment->total_amount,2) }}</td>
     </tr>
     </tbody>
 </table>
