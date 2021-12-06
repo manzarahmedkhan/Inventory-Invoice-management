@@ -372,7 +372,7 @@
                        <option value="">*Select Customer*</option>
                        @foreach($customers as $customer)
                        <option value="{{ $customer->id }}" @if($customer->id == 1) selected @endif>
-                         {{ $customer->name }}
+                         {{ $customer->name }} @if($customer->mobile)| {{ $customer->mobile }}@endif | @if($customer->mobile){{ $customer->address }}@endif
                        </option>
                        @endforeach
                        <option value="0">New Customer</option>
