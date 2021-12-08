@@ -86,11 +86,14 @@ class productController extends Controller
     }
 
     public function checkCodeExists(Request $request){
-        $checkCodeExists = product::where('code',$request->code)->where('supplier_id',$request->supplier_id)->first();
-        if(!$checkCodeExists){
-            return false;
+        if($request->previous_code != $request->code){
+            $checkCodeExists = product::where('code',$request->code)->where('supplier_id',$request->supplier_id)->first();
+            if(!$checkCodeExists){
+                return false;
+            }
+            return true;
         }
-        return true;
+        return false;
     }
 
     public function uploadExcelView(){
