@@ -137,3 +137,12 @@ Route::group(['as'=>'stock.', 'prefix'=>'stock','namespace'=>'Backend','middlewa
    Route::get('/supplier/wais/pdf','stockController@supplierProductWaisPdf')->name('supplier.product.report.pdf');
    Route::get('/product/wais/pdf', 'stockController@productWaisPdf')->name('product.wais.pdf');  
 });
+
+//fakeBills
+Route::group(['as'=>'manualBills.', 'prefix'=>'manualBills','namespace'=>'Backend','middleware'=>'checkvalidUsers'], function(){
+   Route::get('/add','fakeBillsController@add')->name('add'); 
+   Route::post('/store','fakeBillsController@store')->name('store');
+   Route::get('/print/list', 'fakeBillsController@printList')->name('print.list');
+   Route::get('/print/{id}', 'fakeBillsController@print')->name('print');
+});
+

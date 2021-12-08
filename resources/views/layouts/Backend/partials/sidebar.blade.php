@@ -38,12 +38,12 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
           <i class="far fa-user"></i>
-          <span>Manage Employees</span>
+          <span>Open Invoice</span>
         </a>
-        <div id="collapse1" class="{{ ($prefix == '/users')?'collapse show':'collapse' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapse1" class="{{ ($prefix == '/manualBills')?'collapse show':'collapse' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item {{ ($route == 'users.view')?'active':'' }}" href="{{ route('users.view') }}">View All Employees</a>
-            <a class="collapse-item {{ ($route == 'users.password.view')?'active':'' }}" href="{{ route('users.password.view') }}">Change Password</a>
+            <a class="collapse-item {{ ($route == 'manualBills.add')?'active':'' }}" href="{{ route('manualBills.add') }}">Generate Invoice</a>
+            <a class="collapse-item {{ ($route == 'manualBills.print.list')?'active':'' }}" href="{{ route('manualBills.print.list') }}">Print Invoice</a>
           </div>
         </div>
       </li>
