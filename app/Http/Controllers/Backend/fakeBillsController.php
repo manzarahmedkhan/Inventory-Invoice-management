@@ -70,7 +70,7 @@ class fakeBillsController extends Controller
                 });
               // Multipale Data Insert End //
         // Redirect //
-        return redirect()->route('invoice.pending.list')->with('success', 'Invoice Added Successfully');
+        return redirect()->route('manualBills.print.list')->with('success', 'Invoice Added Successfully');
     }
     //---- Invoice Pending List ----//
     public function pendingList(){
