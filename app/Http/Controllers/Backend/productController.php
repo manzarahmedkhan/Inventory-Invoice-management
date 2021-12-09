@@ -9,6 +9,7 @@ use App\Model\product;
 use App\Model\supplier;
 use App\Model\unit;
 use App\Model\category;
+use App\Model\purchase;
 use Auth;
 use DB;
 use Session;
@@ -16,13 +17,28 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Illuminate\Support\Facades\Validator;
+use DataTables;
 
 class productController extends Controller
 {
     //---- Products View ----//
     public function view(){
-    	$products = product::all();
     	return view('layouts.Backend.products.productsView', compact('products'));
+    }
+
+    public function fetchProducts()
+    {
+        $products = product::select('products.id','products.name as product_name','code',DB::raw("concat(quantity,' ',units.name) as stock"),'suppliers.name as supplier','categories.name as category')
+        ->leftjoin('suppliers','products.supplier_id','suppliers.id')
+        ->leftjoin('categories','products.category_id','categories.id')
+        ->leftjoin('units','products.unit_id','units.id');
+        return DataTables::of($products)
+             ->editColumn('action', function ($products) {
+                $productCount = purchase::where('product_id', $products->id)->count();
+                    return  view('layouts.Backend.products.action',compact('products','productCount'));
+                })
+            ->make(true);
+        return $products;
     }
     //---- Products Add ----//
     public function add(){

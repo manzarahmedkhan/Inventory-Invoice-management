@@ -16,7 +16,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>SL.</th>
+                      <!-- <th>SL.</th> -->
                       <th>Supplier Name</th>
                       <th>Code</th>
                       <th>Category</th>
@@ -26,28 +26,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                     @foreach($products as $key => $product)
-                     <tr>
-                       <td>{{ $key+1 }}</td>
-                       <td>{{ $product['supplier']['name'] }}</td>
-                       <td>{{ $product->code }}</td>
-                       <td>{{ $product->category->name }}</td>
-                       <td>{{ $product->name }}</td>
-                       <td>
-                        {{ $product->quantity }}
-                        {{ $product['unit']['name'] }}
-                       </td>
-                       @php 
-                       $productCount = App\Model\purchase::where('product_id', $product->id)->count();
-                       @endphp
-                       <td>
-                        <a title="Edit" class="btn btn-success" href="{{ route('products.edit', $product->id) }}"><i class="fa fa-edit"></i></a>
-                        @if($productCount < 1)
-                        <a onclick="return confirm('are you suer to delete User')" title="Delete" class="btn btn-danger" href="{{ route('products.delete', $product->id) }}"><i class="fa fa-trash"></i></a>
-                        @endif
-                      </td>
-                     </tr>
-                     @endforeach
+                   
                   </tbody>
                 </table>
               </div>
@@ -63,3 +42,46 @@
   <!-- Page level custom scripts -->
   <script src="{{ asset('assets/Backend/js/demo/datatables-demo.js') }}"></script>
 @endpush
+
+@section('js')
+<script type="text/javascript">
+  var url = "{{ route('products.fetchProducts') }}";
+  $('#dataTable').DataTable({
+          processing: true,
+          serverSide: true,
+          scrollX: true,
+          dom: 'Bfrtip',
+          buttons: [{
+            extend: 'excel',
+            text: 'Export to excel',
+          }],
+          ajax: url,
+          columns: [{
+              data: 'supplier',
+              name: 'suppliers.name',
+            }, {
+              data: 'code',
+              name: 'code',
+            },
+            {
+              data: 'category',
+              name: 'categories.name',
+            },{
+              data: 'product_name',
+              name: 'products.name',
+            },
+            {
+              data: 'stock',
+              name: 'units.name',
+            },
+            {
+              data: 'action',
+              name: 'action',
+              orderable: false,
+              searchable: false,
+              width: 100
+            },
+          ],
+        });
+</script>
+@endsection

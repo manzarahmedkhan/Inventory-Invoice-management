@@ -17,7 +17,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "niklasravnsborg/laravel-pdf": "^4.1",
-        "phpoffice/phpspreadsheet": "^1.20"
+        "phpoffice/phpspreadsheet": "^1.20",
+        "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
