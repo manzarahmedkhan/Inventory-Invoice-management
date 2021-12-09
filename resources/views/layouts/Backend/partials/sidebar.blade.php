@@ -30,9 +30,9 @@
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <div class="sidebar-heading">
-        INVOICE!
-      </div>
+      <!-- <div class="sidebar-heading">
+        Employees
+      </div> -->
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
