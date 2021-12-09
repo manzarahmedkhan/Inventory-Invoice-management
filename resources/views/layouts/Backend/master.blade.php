@@ -27,8 +27,8 @@
       @include('layouts.Backend.partials.topnavigation')
 
       <!-- Errors -->
-      <div class="container-fluid status-block">
-        <div class="card-body">
+      <!-- <div class="container-fluid status-block"> -->
+        <!-- <div class="card-body"> -->
           @if ($errors->any())
             <div class="alert alert-danger">
               <ul>
@@ -38,8 +38,8 @@
               </ul>
             </div>
           @endif
-        </div>
-      </div>
+        <!-- </div> -->
+      <!-- </div> -->
       <!-- Begin Page Content -->
         <div class="container-fluid">
             @yield('content')

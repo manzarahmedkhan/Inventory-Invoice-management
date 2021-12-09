@@ -10,10 +10,10 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <img width="40" class="rounded-circle" src="{{ asset('assets/Backend/images/'. Auth::User()->profile) }}">
+        <div class="sidebar-brand-icon ">
+          <i class="fa fa-user"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">{{ Auth::User()->name }} <sup></sup></div>
+        <div class="sidebar-brand-text mx-3">{{ 'TechMonstre' }} <sup></sup></div>
       </a>
 
       <!-- Divider -->
