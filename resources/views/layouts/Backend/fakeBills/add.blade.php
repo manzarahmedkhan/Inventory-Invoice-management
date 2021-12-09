@@ -15,10 +15,10 @@
         @{{product_name}}
       </td>
       <td>
-        <input type="number" min="1" class="form-control form-control-sm text-right selling_qty" name="selling_qty[]"  value="1">
+        <input type="number" min="0" class="form-control form-control-sm text-right selling_qty" name="selling_qty[]"  value="1">
       </td> 
       <td>
-        <input type="number" class="form-control form-control-sm text-right unit_price" name="unit_price[]"  value="">
+        <input type="number" class="form-control form-control-sm text-right unit_price" name="unit_price[]" min="0" oninput="validity.valid||(value='');"  value="">
       </td>
       <td>
         <input class="form-control form-control-sm text-right selling_price" name="selling_price[]"  value="0" readonly>
@@ -61,7 +61,11 @@
             totalAmountPrice();
         });
         // Handlebar Multificaion
-        $(document).on('keyup click', '.unit_price,.selling_qty', function(){
+        $(document).on('keyup click', '.unit_price,.selling_qty', function(e){
+           // if (e.keyCode == 189 || e.keyCode == 109) {  
+
+           //  e.preventDefault();
+           // }
            var unit_price = $(this).closest("tr").find("input.unit_price").val();
            var selling_qty = $(this).closest("tr").find("input.selling_qty").val();
            var total = unit_price*selling_qty;
