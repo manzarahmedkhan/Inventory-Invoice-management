@@ -23,7 +23,7 @@ class productController extends Controller
 {
     //---- Products View ----//
     public function view(){
-    	return view('layouts.Backend.products.productsView', compact('products'));
+    	return view('layouts.Backend.products.productsView');
     }
 
     public function fetchProducts()
