@@ -5,11 +5,12 @@
 
 @section('content')
  <!-- Page Heading -->
-          <a class="btn btn-success my-3" href="{{ route('products.add') }}"><i class="fa fa-plus-circle"></i>Add Product</a>
+          <!-- <a class="btn btn-success my-3" href="{{ route('products.add') }}"><i class="fa fa-plus-circle"></i>Add Product</a> -->
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Products List</h6>
+              <h4 class=" font-weight-bold text-primary"  style="float: left;">Products List</h4>
+              <a class="btn btn-success" href="{{ route('products.add') }}" style="float: right;"><i class="fa fa-plus-circle"></i>Add Product</a>
             </div>
             <div class="card-body">
               <div class="table-responsive">
