@@ -1,3 +1,5 @@
+<!-- {!! $barCode !!} -->
+<?php //dd(1); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +59,8 @@
 			<tr>
 			   <td align="left">
 				    <span style="font-size: 17px;">
-				    	Invoice No : <strong>{{ sprintf("%05d", $invoice->invoice_no)  }}</strong>
+				    	Invoice No : <strong>{{ sprintf("%05d", $invoice->invoice_no)}}&nbsp;</strong>
+				    	{!! $barCode !!}
 				    </span>
 			    </td>
 			    <td align="right">

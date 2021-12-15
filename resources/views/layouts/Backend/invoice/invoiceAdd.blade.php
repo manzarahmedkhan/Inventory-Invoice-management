@@ -198,7 +198,7 @@
                                   <div class="col-lg-1.5">
                                       <div class="form-group">
                                         <label>Invoice No.</label>
-                                        <input type="text" name="invoice_no" id="invoice_no" class="form-control form-control-sm" readonly style="background-color: #D8FDBA;" value="{{ $invoiceData }}">
+                                        <input type="text" name="invoice_no" id="invoice_no" class="form-control form-control-sm" readonly style="background-color: #D8FDBA;" value="{{ sprintf("%05d", $invoiceData) }}">
                                       </div> 
                                   </div>
 

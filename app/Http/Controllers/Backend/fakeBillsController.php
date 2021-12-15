@@ -120,6 +120,7 @@ class fakeBillsController extends Controller
         $data['invoice'] = fakeBills::with('fakeBillsDetails')->find($id);
 
         $data['qrCode'] = invoice::generateQRcode($data['invoice']);
+        $data['barCode'] = invoice::generateBarCode($data['invoice']->invoice_no);
         $pdf = PDF::loadView('layouts.Backend.fakeBills.billPrint', $data);
         $pdf->SetProtection(['copy', 'print'], '', 'pass');
         return $pdf->stream('document.pdf');

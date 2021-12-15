@@ -167,6 +167,7 @@ class invoiceController extends Controller
     function print($id) {
     $data['invoice'] = invoice::with('invoiceDetails')->find($id);
     $data['qrCode'] = invoice::generateQRcode($data['invoice']);
+    $data['barCode'] = invoice::generateBarCode($data['invoice']->invoice_no);
     $pdf = PDF::loadView('layouts.Backend.pdf.invoicePrint', $data);
     $pdf->SetProtection(['copy', 'print'], '', 'pass');
     return $pdf->stream('document.pdf');
