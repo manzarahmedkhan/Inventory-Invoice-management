@@ -68,7 +68,7 @@
 							$date = new DateTime('now', new DateTimezone(env('DATETIMEZONE')));
 						} 
 					@endphp
-		    		Date/Time : {{ date('d-m-Y',strtotime($invoice->date)).$date->format(' H:i A') }}
+		    		Date/Time : {{ date('d-m-Y',strtotime($invoice->date)).date(' h:i A',strtotime($invoice->created_at)) }}
 				 </span>
 		    	</td>
 			</tr>
