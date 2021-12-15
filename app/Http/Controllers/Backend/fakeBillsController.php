@@ -14,6 +14,7 @@ use App\Model\fakeBillDetails;
 use DB;
 use Auth;
 use PDF;
+use Carbon\Carbon;
 class fakeBillsController extends Controller
 {
     //---- Invoice View ----//
@@ -114,13 +115,14 @@ class fakeBillsController extends Controller
         return view('layouts.Backend.fakeBills.billPrintList', $data);
     }
     // Invoice Print //
-    function print($id) {
-    $data['invoice'] = fakeBills::with('fakeBillsDetails')->find($id);
-    // return view('layouts.Backend.pdf.invoicePrint', $data);
-    // dd($data['invoice']);
-    $pdf = PDF::loadView('layouts.Backend.fakeBills.billPrint', $data);
-    $pdf->SetProtection(['copy', 'print'], '', 'pass');
-    return $pdf->stream('document.pdf');
+    function print($id) 
+    {
+        $data['invoice'] = fakeBills::with('fakeBillsDetails')->find($id);
+
+        $data['qrCode'] = invoice::generateQRcode($data['invoice']);
+        $pdf = PDF::loadView('layouts.Backend.fakeBills.billPrint', $data);
+        $pdf->SetProtection(['copy', 'print'], '', 'pass');
+        return $pdf->stream('document.pdf');
    }
    // Invoice Daily //
    public function DailyInvoice(){
@@ -151,4 +153,5 @@ class fakeBillsController extends Controller
       paymentDetail::where('invoice_id', $invoiceDelete->id)->delete();
       return redirect()->route('invoice.pending.list')->with('success', 'Invoice Deleted successfully');
     }
+
 }    

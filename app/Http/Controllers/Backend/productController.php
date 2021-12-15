@@ -17,6 +17,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Illuminate\Support\Facades\Validator;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 use DataTables;
 
 class productController extends Controller
@@ -28,10 +29,12 @@ class productController extends Controller
 
     public function fetchProducts()
     {
-        $products = product::select('products.id','products.name as product_name','code',DB::raw("concat(quantity,' ',units.name) as stock"),'suppliers.name as supplier','categories.name as category')
+        $products = product::select('products.id','products.name as product_name','code',DB::raw("(code *1) as product_code"),DB::raw("concat(quantity,' ',units.name) as stock"),'suppliers.name as supplier','categories.name as category')
         ->leftjoin('suppliers','products.supplier_id','suppliers.id')
         ->leftjoin('categories','products.category_id','categories.id')
-        ->leftjoin('units','products.unit_id','units.id');
+        ->leftjoin('units','products.unit_id','units.id')
+        ->orderBy('product_code','asc');
+
         return DataTables::of($products)
              ->editColumn('action', function ($products) {
                 $productCount = purchase::where('product_id', $products->id)->count();
@@ -258,5 +261,10 @@ class productController extends Controller
             // dd($excelarray);
             return $excelarray;
         }
+    }
+
+    public function translateProductDescription(){
+        $description = "Drill Machine";
+        return GoogleTranslate::trans($description, 'ar');
     }
 }

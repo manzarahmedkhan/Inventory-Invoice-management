@@ -95,6 +95,7 @@ Route::group(['as'=>'products.', 'prefix'=>'products','namespace'=>'Backend','mi
    Route::get('/uploadExcelView','productController@uploadExcelView')->name('uploadExcelView');
    Route::post('/uploadExcel','productController@uploadExcel')->name('uploadExcel');
    Route::get('/fetchProducts', 'productController@fetchProducts')->name('fetchProducts');
+   Route::get('/translateProductDescription', 'productController@translateProductDescription')->name('translateProductDescription');
 });
 // Purchase Route //
 Route::group(['as'=>'purchase.', 'prefix'=>'purchase','namespace'=>'Backend','middleware'=>'checkvalidUsers'], function(){
@@ -129,6 +130,7 @@ Route::group(['as'=>'invoice.', 'prefix'=>'invoice','namespace'=>'Backend','midd
    Route::get('/print/{id}', 'invoiceController@print')->name('print');
    Route::get('/daily', 'invoiceController@DailyInvoice')->name('daily');
    Route::get('/daily/print', 'invoiceController@DailyInvoicePrint')->name('daily.print');
+   Route::get('/generateQRcode', 'invoiceController@generateQRcode')->name('generateQRcode');
 });
 // Stock Route //
 Route::group(['as'=>'stock.', 'prefix'=>'stock','namespace'=>'Backend','middleware'=>'checkvalidUsers'], function(){

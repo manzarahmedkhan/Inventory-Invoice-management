@@ -18,7 +18,9 @@
         "laravel/ui": "^2.0",
         "niklasravnsborg/laravel-pdf": "^4.1",
         "phpoffice/phpspreadsheet": "^1.20",
-        "yajra/laravel-datatables-oracle": "^9.18"
+        "stichoza/google-translate-php": "^4.1",
+        "yajra/laravel-datatables-oracle": "^9.18",
+        "milon/barcode": "^7.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

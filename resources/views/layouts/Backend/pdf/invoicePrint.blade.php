@@ -141,27 +141,20 @@
     	<td colspan="6" height="25"></td>
     </tr>
     <tr>
-    	<td colspan="5" style="text-align: right;">Sub Total:-</td>
+    	<td rowspan="4" colspan="2">{!! $qrCode !!}</td>
+    	<td colspan="3" style="text-align: right;">Sub Total:-</td>
     	<td align="right">{{ number_format($subTotal,2) }}</td>
     </tr>
     <tr>
-    	<td colspan="5" style="text-align: right;">Discount Amount:-</td>
+    	<td colspan="3" style="text-align: right;">Discount Amount:-</td>
     	<td align="right">-{{ isset($invoice->payment->discount_amount) > 0 ? number_format($invoice->payment->discount_amount,2) : 0.00 }}</td>
     </tr>
     <tr>
-    	<td colspan="5" style="text-align: right;">VAT Amount:-</td>
+    	<td colspan="3" style="text-align: right;">VAT Amount:-</td>
     	<td align="right">{{ number_format($invoice->payment->vat_amount,2) }}</td>
     </tr>
-    <!-- <tr>
-    	<td colspan="5" style="text-align: right;">Paid Amount:-</td>
-    	<td>{{ $invoice->payment->paid_amount }}</td>
-    </tr> -->
-   <!--  <tr>
-    	<td colspan="5" style="text-align: right;">Due Amount:-</td>
-    	<td>{{ $invoice->payment->due_amount }}</td>
-    </tr> -->
     <tr>
-    	<td colspan="5" style="text-align: right;">Grand Total:-</td>
+    	<td colspan="3" style="text-align: right;">Grand Total:-</td>
     	<td align="right">{{ number_format($invoice->payment->total_amount,2) }}</td>
     </tr>
     </tbody>

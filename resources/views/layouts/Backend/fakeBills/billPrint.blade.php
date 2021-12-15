@@ -62,26 +62,13 @@
 			    </td>
 			    <td align="right">
 		    	 <span style="font-size: 15px;text-align:right;">
-		    		@php
-						$date = new DateTime('now', new DateTimezone('Asia/Riyadh'));
-						if(env('DATETIMEZONE')){
-							$date = new DateTime('now', new DateTimezone(env('DATETIMEZONE')));
-						} 
-					@endphp
-		    		Date/Time : {{ date('d-m-Y',strtotime($invoice->date)).$date->format(' H:i A') }}
+		    		Date/Time : {{ date('d-m-Y',strtotime($invoice->date)).date(' h:i A',strtotime($invoice->created_at)) }}
 				 </span>
 		    	</td>
 			</tr>
 	</tbody>
 </table>
 <hr>
-<!-- <table width="100%">
-	<tbody>
-		<tr>
-			<td width="100%" style="text-align: center; color: black;  padding: 10px 0px; font-size: 20px;"><h4><strong>Customer Information:-</strong></h4></td>
-		</tr>
-	</tbody>
-</table> -->
 <table width="100%">
 	<tbody>
 	  <tr>
@@ -140,27 +127,24 @@
     	<td colspan="6" height="25"></td>
     </tr>
     <tr>
-    	<td colspan="5" style="text-align: right;">Sub Total:-</td>
+    	<td rowspan="4" colspan="2">{!! $qrCode !!}</td>
+    	<td colspan="3" style="text-align: right;">Sub Total:-</td>
     	<td align="right">{{ number_format($subTotal,2) }}</td>
     </tr>
     <tr>
-    	<td colspan="5" style="text-align: right;">Discount Amount:-</td>
+    	<td colspan="3" style="text-align: right;">Discount Amount:-</td>
     	<td align="right">-{{ isset($invoice->discount_amount) > 0 ? number_format($invoice->discount_amount,2) : 0.00 }}</td>
     </tr>
     <tr>
-    	<td colspan="5" style="text-align: right;">VAT Amount:-</td>
+    	<td colspan="3" style="text-align: right;">VAT Amount:-</td>
     	<td align="right">{{ number_format($invoice->vat_amount,2) }}</td>
     </tr>
     <tr>
-    	<td colspan="5" style="text-align: right;">Grand Total:-</td>
+    	<td colspan="3" style="text-align: right;">Grand Total:-</td>
     	<td align="right">{{ number_format($invoice->total_amount,2) }}</td>
     </tr>
     </tbody>
 </table>
-<!-- <br>
-<strong>
-	Date/Time :- {{ $date->format('d-m-Y H:i A') }}
-</strong> -->
 <!-- <hr> -->
 <div id="footer">
 	<table width="100%">
