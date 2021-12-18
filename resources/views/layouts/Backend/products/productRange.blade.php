@@ -94,7 +94,7 @@
          {
          extend: 'excel',
          text:'Excel',
-         title:'Products Code From '+start_code+' to '+end_code,
+         title:'Products Code From '+start_code+' - '+end_code,
          action:newexportaction,
          exportOptions: {
            columns: ':not(:last-child)',
@@ -106,7 +106,7 @@
          },
          {
             extend: 'pdf',
-            title:'Products Code From '+start_code+' to '+end_code,
+            title:'Products Code From '+start_code+' - '+end_code,
             action:newexportaction,      
             exportOptions: {
                  columns: ':not(:last-child)',
