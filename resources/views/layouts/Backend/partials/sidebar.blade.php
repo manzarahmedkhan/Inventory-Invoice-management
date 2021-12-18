@@ -141,6 +141,7 @@
         <div id="collapse6" class="{{ ($prefix == '/products')?'collapse show':'collapse' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item {{ ($route == 'products.view')?'active':'' }}" href="{{ route('products.view') }}">View Products</a>
+            <a class="collapse-item {{ ($route == 'products.productRange')?'active':'' }}" href="{{ route('products.productRange') }}">Search From-To Code</a>
           </div>
         </div>
       </li>

@@ -65,6 +65,12 @@
 <!-- Page level plugins -->
 <script src="{{ asset('assets/Backend/vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/Backend/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<!-- Excel pdf buttons -->
+<script src="{{ asset('assets/Backend/vendor/datatables/jszip.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/Backend/vendor/datatables/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/Backend/vendor/datatables/pdfmake.min.js') }}"></script>
+<script src="{{ asset('assets/Backend/vendor/datatables/vfs_fonts.js') }}"></script>
+<script src="{{ asset('assets/Backend/vendor/datatables/buttons.html5.min.js') }}"></script>
 <!-- Page level custom scripts -->
 <script src="{{ asset('assets/Backend/js/demo/datatables-demo.js') }}"></script>
 @endpush
@@ -79,15 +85,34 @@
        return false;
    }
      $('#dataTable1').DataTable({
-        destroy: true,
+       destroy: true,
        processing: true,
        serverSide: true,
        scrollX: true,
        dom: 'Bfrtip',
-       buttons: [{
+       buttons: [
+         {
          extend: 'excel',
-         text: 'Export to excel',
-       }],
+         text:'Excel',
+         title:'Products Code From '+start_code+' to '+end_code,
+         action:newexportaction,
+         exportOptions: {
+           columns: ':not(:last-child)',
+           modifier: {
+               search: 'applied',
+               order: 'applied'  
+           },
+         }
+         },
+         {
+            extend: 'pdf',
+            title:'Products Code From '+start_code+' to '+end_code,
+            action:newexportaction,      
+            exportOptions: {
+                 columns: ':not(:last-child)',
+            },
+         }
+      ],
        "ajax": {
            url: url,
            type:'post',
