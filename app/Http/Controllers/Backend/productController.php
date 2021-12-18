@@ -32,8 +32,8 @@ class productController extends Controller
         $products = product::select('products.id','products.name as product_name','code',DB::raw("(code *1) as product_code"),DB::raw("concat(quantity,' ',units.name) as stock"),'suppliers.name as supplier','categories.name as category')
         ->leftjoin('suppliers','products.supplier_id','suppliers.id')
         ->leftjoin('categories','products.category_id','categories.id')
-        ->leftjoin('units','products.unit_id','units.id')
-        ->orderBy('product_code','asc');
+        ->leftjoin('units','products.unit_id','units.id');
+        // ->orderBy('product_code','asc');
 
         return DataTables::of($products)
              ->editColumn('action', function ($products) {
@@ -41,7 +41,6 @@ class productController extends Controller
                     return  view('layouts.Backend.products.action',compact('products','productCount'));
                 })
             ->make(true);
-        return $products;
     }
     //---- Products Add ----//
     public function add(){
@@ -261,6 +260,26 @@ class productController extends Controller
             // dd($excelarray);
             return $excelarray;
         }
+    }
+
+    public function productRange(){
+        return view('layouts.Backend.products.productRange');
+    }
+
+    public function fetchproductRange(Request $request)
+    {
+        $products = product::select('products.id','products.name as product_name','code',DB::raw("(code *1) as product_code"),DB::raw("concat(quantity,' ',units.name) as stock"),'suppliers.name as supplier','categories.name as category')
+        ->leftjoin('suppliers','products.supplier_id','suppliers.id')
+        ->leftjoin('categories','products.category_id','categories.id')
+        ->leftjoin('units','products.unit_id','units.id')
+        ->whereRaw('code BETWEEN '.$request->start_code.' AND '.$request->end_code);
+
+        return DataTables::of($products)
+             ->editColumn('action', function ($products) {
+                $productCount = purchase::where('product_id', $products->id)->count();
+                    return  view('layouts.Backend.products.action',compact('products','productCount'));
+                })
+            ->make(true);
     }
 
     public function translateProductDescription(){

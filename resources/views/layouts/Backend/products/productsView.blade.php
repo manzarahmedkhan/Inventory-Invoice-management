@@ -83,6 +83,7 @@
               width: 100
             },
           ],
+          order:[1,'asc'],
         });
 </script>
 @endsection

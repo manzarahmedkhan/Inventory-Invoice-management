@@ -96,6 +96,8 @@ Route::group(['as'=>'products.', 'prefix'=>'products','namespace'=>'Backend','mi
    Route::post('/uploadExcel','productController@uploadExcel')->name('uploadExcel');
    Route::get('/fetchProducts', 'productController@fetchProducts')->name('fetchProducts');
    Route::get('/translateProductDescription', 'productController@translateProductDescription')->name('translateProductDescription');
+   Route::get('/productRange','productController@productRange')->name('productRange');
+   Route::post('/fetchProductRange', 'productController@fetchProductRange')->name('fetchProductRange');
 });
 // Purchase Route //
 Route::group(['as'=>'purchase.', 'prefix'=>'purchase','namespace'=>'Backend','middleware'=>'checkvalidUsers'], function(){
