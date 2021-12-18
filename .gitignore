@@ -6,3 +6,4 @@ composer.lock
 .env
 .env.backup
 README.md
+/storage/temp

@@ -126,10 +126,10 @@
     	<td colspan="6" height="25"></td>
     </tr>
     <tr>
-    	<td colspan="6" height="25"></td>
+    	<td rowspan="5" colspan="2">{!! $qrCode !!}</td>
+    	<td colspan="4" height="25"></td>
     </tr>
     <tr>
-    	<td rowspan="4" colspan="2">{!! $qrCode !!}</td>
     	<td colspan="3" style="text-align: right;">Sub Total:-</td>
     	<td align="right">{{ number_format($subTotal,2) }}</td>
     </tr>
