@@ -3,6 +3,16 @@
 <link href="{{ asset('assets/Backend/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @endpush
 @section('content')
+<style type="text/css">
+   /*.dataTables1_wrapper .dt-buttons {
+  float:none;  
+  text-align:center;
+} 
+*/
+.dataTables_filter {
+   margin-top: -2rem;
+}
+</style>
 <div class="row">
    <div class="col-lg-12">
       <div class="card">
@@ -39,7 +49,7 @@
                </div>
                <!--End row -->
             </form>
-            <div class="table-responsive">
+            <div class="table-responsive" style="display:none;">
                <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                   <thead>
                      <tr>
@@ -78,10 +88,11 @@
 <script type="text/javascript">
    var url = "{{ route('products.fetchProductRange') }}";
    function fetchProductRange(){
+   $('.table-responsive').show();  
    var start_code = $('#start_code').val();
    var end_code   = $('#end_code').val();
    if(!start_code || !end_code){
-       alert('From Code and To Code fields are required!')
+       alert('From Code and To Code fields are required!');
        return false;
    }
      $('#dataTable1').DataTable({
@@ -92,25 +103,30 @@
        dom: 'Bfrtip',
        buttons: [
          {
-         extend: 'excel',
-         text:'Excel',
-         title:'Products Code From '+start_code+' - '+end_code,
-         action:newexportaction,
-         exportOptions: {
-           columns: ':not(:last-child)',
-           modifier: {
-               search: 'applied',
-               order: 'applied'  
-           },
-         }
+            extend: 'excel',
+            className: "btn btn-success fas fa-file-excel",
+            title:'Products Code From '+start_code+' - '+end_code,
+            action:newexportaction,
+            exportOptions: {
+               columns: ':not(:last-child)',
+               modifier: {
+                  search: 'applied',
+                  order: 'applied'  
+               },
+            }
          },
          {
             extend: 'pdf',
+            className: "btn btn-secondary fas fa-file-pdf",
             title:'Products Code From '+start_code+' - '+end_code,
             action:newexportaction,      
             exportOptions: {
-                 columns: ':not(:last-child)',
-            },
+               columns: ':not(:last-child)',
+               modifier: {
+                  search: 'applied',
+                  order: 'applied'  
+               },
+            }
          }
       ],
        "ajax": {
