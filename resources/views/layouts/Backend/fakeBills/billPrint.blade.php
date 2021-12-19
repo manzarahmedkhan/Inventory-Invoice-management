@@ -124,7 +124,7 @@
     	<td colspan="6" style="text-align: center;color: red;">Nothing Follows</td>
     </tr>
     <tr>
-    	<td colspan="6" height="25"></td>
+    	<td colspan="6" height="25">{{$invoice->comments}}</td>
     </tr>
     <tr>
     	<td rowspan="5" colspan="2">{!! $qrCode !!}</td>

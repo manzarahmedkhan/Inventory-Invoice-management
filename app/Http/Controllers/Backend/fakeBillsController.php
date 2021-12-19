@@ -19,7 +19,7 @@ class fakeBillsController extends Controller
 {
     //---- Invoice View ----//
     public function view(){
-        $data['invoices'] = invoice::orderBy('date','desc')->orderBy('id','desc')->where('status', '1')->get();
+        $data['invoices'] = fakeBills::orderBy('date','desc')->orderBy('id','desc')->where('status', '1')->get();
     	return view('layouts.Backend.invoice.invoiceView', $data);
     }
     //---- Invoice Add ----//

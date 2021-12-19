@@ -2,7 +2,7 @@
 
 set -e
 
-
+echo '------------------'$(tput setaf 3)'Process start!'$(tput sgr0)'------------------'
 echo 'git pull'
 git pull
 echo '--------------------------------------------------'

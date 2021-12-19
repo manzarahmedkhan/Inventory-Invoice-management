@@ -35,7 +35,7 @@
                        </td>
                        <td> Invoice No #{{ $invoice->invoice_no }}</td>
                        <td>{{ date('d-m-Y', strtotime($invoice->date)) }}</td>
-                       <td>{{ $invoice->description }}</td>
+                       <td>{{ $invoice->comments }}</td>
                        <td>{{ $invoice->total_amount }}</td>
                        <td>
                          <a target="_blank" title="Print" class="btn btn-info" href="{{ route('manualBills.print', $invoice->id) }}"><i class="fa fa-print"></i></a>
