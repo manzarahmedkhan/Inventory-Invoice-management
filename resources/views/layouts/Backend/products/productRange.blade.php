@@ -4,13 +4,12 @@
 @endpush
 @section('content')
 <style type="text/css">
-   /*.dataTables1_wrapper .dt-buttons {
-  float:none;  
-  text-align:center;
-} 
-*/
 .dataTables_filter {
    margin-top: -2rem;
+}
+.dataTables_length{
+   margin-top: -2rem;
+   text-align: center;
 }
 </style>
 <div class="row">
@@ -100,7 +99,7 @@
        processing: true,
        serverSide: true,
        scrollX: true,
-       dom: 'Bfrtip',
+       dom: 'Bflrtip',
        buttons: [
          {
             extend: 'excel',

@@ -3,6 +3,15 @@
 <link href="{{ asset('assets/Backend/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @endpush
 @section('content')
+<style type="text/css">
+.dataTables_filter {
+   margin-top: -2rem;
+}
+.dataTables_length{
+   margin-top: -2rem;
+   text-align: center;
+}
+</style>
 <div class="card shadow mb-4">
    <div class="card-header py-3">
       <h4 class=" font-weight-bold text-primary"  style="float: left;">Products List</h4>
@@ -55,11 +64,11 @@
              text: 'Export to excel',
            }],
            ajax: url,
-           dom: 'Bfrtip',
+           dom: 'Bflrtip',
             buttons: [
               {
               extend: 'excel',
-              text:'Excel',
+              className: "btn btn-success fas fa-file-excel",
               title:'Products',
               action:newexportaction,
               exportOptions: {
@@ -72,6 +81,7 @@
               },
               {
                  extend: 'pdf',
+                 className: "btn btn-secondary fas fa-file-pdf",
                  title:'Products',
                  action:newexportaction,      
                  exportOptions: {
