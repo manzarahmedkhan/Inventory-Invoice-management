@@ -6,6 +6,7 @@
       <input type="hidden" name="date" value="@{{date}}">
       <input type="hidden" name="invoice_no" value="@{{invoice_no}}">
       <input type="hidden" name="vat_percent" value="@{{vat_percent}}">
+      <input type="hidden" name="supplier_id[]" value="@{{supplier_id}}">
       <td>
         <input type="hidden" name="product_code[]" value="@{{product_code}}">
         @{{product_code}}
@@ -32,8 +33,10 @@
      $(document).on('click','.addMore', function(){
         var date = $('#date').val();
         var invoice_no = $('#invoice_no').val();
+        var supplier_id   = $('#supplier_id').val();
         var product_code  = $('#product_code').val();
         var product_name  = $('#product_description').val();
+        var supplier_select_require = $('.supplier_select_require').val();
          // validation
         if(date==''){
           $.notify("Date is required", {globalPosition: 'top right',className: 'error'});
@@ -43,12 +46,21 @@
           $.notify("Item Code is required", {globalPosition: 'top right',className: 'error'});
           return false;
         }
+        if(supplier_select_require == 1){
+          $.notify("Supplier is required", {globalPosition: 'top right',className: 'error'});
+          return false;
+        }
+        if(product_name == ''){
+          $.notify("Description is required", {globalPosition: 'top right',className: 'error'});
+          return false;
+        }
         var source   = $('#document-template').html();
         var template = Handlebars.compile(source);
         var data     = {
           date:date,
           invoice_no:invoice_no,
           product_code:product_code,
+          supplier_id:supplier_id,
           product_name:product_name,
           vat_percent:vat_percent
         };
@@ -115,6 +127,7 @@
       $('#category_name').val('');
       $('#product_description').val('');
       $('#stock').val('');
+      $('.supplier_select_require').val('');
       var code = $(this).val();
       $.ajax({
         url:"{{ route('get.supplier') }}",
@@ -130,9 +143,11 @@
               $('#stock').val(v.quantity);
               $('.supplier_input').show();
               $('.supplier_select').hide();
+              $('.supplier_select_require').val('');
             }else{
               $('.supplier_select').show();
               $('.supplier_input').hide();
+              $('.supplier_select_require').val(1);
             }
             html +='<option value="'+v.supplier.id+'" product_id="'+v.id+'" product_name="'+v.name+'" category_id="'+v.category.id+'" category_name="'+v.category.name+'" stock="'+v.quantity+'" '+selected+'>'+v.supplier.name+'</option>';
           $('#category_name').val(v.category.name);
@@ -150,6 +165,11 @@
       $('#category_name').val(category_name);
       $('#product_description').val(product_description);
       $('#stock').val(stock);
+      if(product_description){
+        $('.supplier_select_require').val('');
+      }else{
+        $('.supplier_select_require').val(1);
+      }
     });
 
     // Paid Status //
@@ -201,6 +221,23 @@
                                           <label>Item Code</label>
                                           <input type="text" name="product_code" id="product_code" class="form-control form-control-sm">
                                           </select>   
+                                       </div> 
+                                  </div>
+                                  <div class="col-lg-3">
+                                    <input type="hidden" name="supplier_select_require" class="supplier_select_require">
+                                       <div class="form-group">
+                                          <label>Supplier Name</label>
+                                          <input type="text" name="supplier_input" id="supplier_input" class="form-control form-control-sm supplier_input" readonly="" style="display: none;" >
+                                          <span class="supplier_select">
+                                          <select name="supplier_id" class="form-control select2" id="supplier_id">
+                                            <option value="">
+                                            *Select Supplier* 
+                                          </select> 
+                                          </span>
+                                           @error('supplier_id')
+                                           <strong class="alert alert-danger">{{ $message }}
+                                           </strong>
+                                          @enderror
                                        </div> 
                                   </div>
                                 <div class="col-lg-5">
