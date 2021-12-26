@@ -79,10 +79,15 @@
         });
         // Handlebar Multificaion
         $(document).on('keyup click', '.unit_price,.selling_qty', function(){
+          if ($(this).val() < 0) {  
+               $(this).closest("tr").find("input.unit_price").val('');
+               $('.unit_price').trigger('keyup');
+               return false;
+           }
            var unit_price = $(this).closest("tr").find("input.unit_price").val();
            var selling_qty = $(this).closest("tr").find("input.selling_qty").val();
            var total = unit_price*selling_qty;
-           $(this).closest("tr").find("input.selling_price").val(total);
+           $(this).closest("tr").find("input.selling_price").val(total.toFixed(2));
            // Discount 
            $('#discount_amount').trigger('keyup');   
         });
