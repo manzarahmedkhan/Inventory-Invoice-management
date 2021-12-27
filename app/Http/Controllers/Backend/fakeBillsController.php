@@ -17,11 +17,6 @@ use PDF;
 use Carbon\Carbon;
 class fakeBillsController extends Controller
 {
-    //---- Invoice View ----//
-    public function view(){
-        $data['invoices'] = fakeBills::orderBy('date','desc')->orderBy('id','desc')->where('status', '1')->get();
-    	return view('layouts.Backend.invoice.invoiceView', $data);
-    }
     //---- Invoice Add ----//
     public function add(){
     	$invoice_no = fakeBills::orderBy('id','desc')->first();
@@ -61,6 +56,7 @@ class fakeBillsController extends Controller
                         $invoiceDetail->quantity        = $request->selling_qty[$i];
                         $invoiceDetail->unit_price   = number_format($request->unit_price[$i],2, '.', '');
                         $invoiceDetail->selling_price = number_format($request->selling_price[$i],2, '.', '');
+                        $invoiceDetail->supplier = $request->supplier_id[$i];
                         $invoiceDetail->status        = '0';
                         $invoiceDetail->save();
                     }

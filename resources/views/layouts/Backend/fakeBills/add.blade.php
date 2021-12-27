@@ -19,7 +19,7 @@
         <input type="number" min="0" class="form-control form-control-sm text-right selling_qty" name="selling_qty[]"  value="1">
       </td> 
       <td>
-        <input type="number" class="form-control form-control-sm text-right unit_price" name="unit_price[]" min="0" value="">
+        <input type="number" class="form-control form-control-sm text-right unit_price" name="unit_price[]" min="0" step=".01" value="">
       </td>
       <td>
         <input class="form-control form-control-sm text-right selling_price" name="selling_price[]"  value="0" readonly>
@@ -114,7 +114,6 @@
 </script>
 <script type="text/javascript">
   $(document).ready(function(){
-
     //get supplier and product details by Item Code
     $(document).on('keyup','#product_code',function(evtobj){
       if (!(evtobj.altKey || evtobj.ctrlKey || evtobj.shiftKey)){
@@ -135,25 +134,28 @@
         data:{code:code},
         success:function(data){
           var dataCount = Object.keys(data).length;
+          if(dataCount < 1){
+            $('.supplier_class').hide();
+          }else if(dataCount == 1){
+            $('.supplier_class').hide();
+            $('#product_description').val(data[0].name);
+          }
+          else{
+              $('.supplier_class').show();
+              $('.supplier_id').select2();
+              $('.supplier_select_require').val(1);
+              // $('.supplier_select').show();
+
           var html = '<option value="">Select Supplier</option>';
           $.each(data,function(key,v){
-            if(dataCount == 1){
-              var selected = "selected";
-              $('.supplier_input').val(v.supplier.name);
-              $('#stock').val(v.quantity);
-              $('.supplier_input').show();
-              $('.supplier_select').hide();
-              $('.supplier_select_require').val('');
-            }else{
-              $('.supplier_select').show();
-              $('.supplier_input').hide();
-              $('.supplier_select_require').val(1);
-            }
+           
+              // $('.supplier_input').hide();
             html +='<option value="'+v.supplier.id+'" product_id="'+v.id+'" product_name="'+v.name+'" category_id="'+v.category.id+'" category_name="'+v.category.name+'" stock="'+v.quantity+'" '+selected+'>'+v.supplier.name+'</option>';
           $('#category_name').val(v.category.name);
           $('#product_description').val(v.name);
           });
           $('#supplier_id').html(html);
+          }
         }
        });
     });
@@ -223,13 +225,13 @@
                                           </select>   
                                        </div> 
                                   </div>
-                                  <div class="col-lg-3">
+                                  <div class="col-lg-3 supplier_class" style="display:none;">
                                     <input type="hidden" name="supplier_select_require" class="supplier_select_require">
                                        <div class="form-group">
                                           <label>Supplier Name</label>
                                           <input type="text" name="supplier_input" id="supplier_input" class="form-control form-control-sm supplier_input" readonly="" style="display: none;" >
                                           <span class="supplier_select">
-                                          <select name="supplier_id" class="form-control select2" id="supplier_id">
+                                          <select name="supplier_id" class="form-control select2 supplier_id" id="supplier_id">
                                             <option value="">
                                             *Select Supplier* 
                                           </select> 
