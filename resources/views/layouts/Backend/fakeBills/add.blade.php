@@ -150,7 +150,7 @@
           $.each(data,function(key,v){
            
               // $('.supplier_input').hide();
-            html +='<option value="'+v.supplier.id+'" product_id="'+v.id+'" product_name="'+v.name+'" category_id="'+v.category.id+'" category_name="'+v.category.name+'" stock="'+v.quantity+'" '+selected+'>'+v.supplier.name+'</option>';
+            html +="<option value='"+v.supplier.id+"' product_id='"+v.id+"' product_name='"+v.name+"' category_id='"+v.category.id+"' category_name='"+v.category.name+"' stock='"+v.quantity+"' "+selected+">"+v.supplier.name+"</option>";
           $('#category_name').val(v.category.name);
           $('#product_description').val(v.name);
           });
