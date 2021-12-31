@@ -32,7 +32,7 @@
             <!-- Nested Row within Card Body -->
             <div class="row">
               <div class="col-lg-6 d-none d-lg-block bg-login-image">
-                  <img class="mt-2" width="500" src="{{ asset('assets/Backend/images/arifmehrab.jpg') }}">
+                  <!-- <img class="mt-2" width="500" src="{{ asset('assets/Backend/images/arifmehrab.jpg') }}"> -->
               </div>
               <div class="col-lg-6">
                 <div class="p-5">
