@@ -13,6 +13,9 @@ use App\Model\customer;
 use App\Model\unit;
 use App\Model\payment;
 use App\User;
+use Artisan;
+use Response;
+
 class HomeController extends Controller
 {
     /**
@@ -51,5 +54,11 @@ class HomeController extends Controller
         $due_amount = payment::sum('due_amount');
 
         return view('layouts.Backend.index', compact('todayInvoice', 'todayInvoiceCount', 'todayPurchase', 'todayPurchaseCount', 'category', 'supplier', 'products', 'users', 'customer', 'unit', 'totalPurchase', 'totalInvoice', 'pending_invoice', 'due_amount'));
+    }
+
+    public function backup(){
+      \Artisan::call('database:backup');
+      // dd(Artisan::output());
+      return Response::download(storage_path() . '/app/backup/' . trim(Artisan::output()));
     }
 }

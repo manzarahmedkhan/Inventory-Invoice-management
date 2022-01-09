@@ -23,6 +23,7 @@ Route::get('/', function (){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/backup', 'HomeController@backup')->name('backup');
 
 // Users Route //
 Route::group(['as'=>'users.','prefix'=>'users', 'namespace'=>'Backend', 'middleware'=>'checkvalidUsers'], function(){
