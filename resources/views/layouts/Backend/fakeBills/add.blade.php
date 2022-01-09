@@ -8,6 +8,10 @@
       <input type="hidden" name="vat_percent" value="@{{vat_percent}}">
       <input type="hidden" name="supplier_id[]" value="@{{supplier_id}}">
       <td>
+        <input type="hidden" name="sr_no[]" value="@{{sr_no}}">
+        @{{sr_no}}
+      </td>
+      <td>
         <input type="hidden" name="product_code[]" value="@{{product_code}}">
         @{{product_code}}
       </td>
@@ -16,10 +20,10 @@
         @{{product_name}}
       </td>
       <td>
-        <input type="number" min="0" class="form-control form-control-sm text-right selling_qty" name="selling_qty[]"  value="1">
+        <input type="number" class="form-control form-control-sm text-right selling_qty" name="selling_qty[]" min="1"  value="1" required>
       </td> 
       <td>
-        <input type="number" class="form-control form-control-sm text-right unit_price" name="unit_price[]" min="0" step=".01" value="">
+        <input type="number" class="form-control form-control-sm text-right unit_price" name="unit_price[]" min="0" step=".01" value="" required>
       </td>
       <td>
         <input class="form-control form-control-sm text-right selling_price" name="selling_price[]"  value="0" readonly>
@@ -31,12 +35,14 @@
   $(document).ready(function(){
     var vat_percent = 0;
      $(document).on('click','.addMore', function(){
+
         var date = $('#date').val();
         var invoice_no = $('#invoice_no').val();
         var supplier_id   = $('#supplier_id').val();
         var product_code  = $('#product_code').val();
         var product_name  = $('#product_description').val();
         var supplier_select_require = $('.supplier_select_require').val();
+        var sr_no = parseInt($('.product_count').val()) + 1;
          // validation
         if(date==''){
           $.notify("Date is required", {globalPosition: 'top right',className: 'error'});
@@ -57,6 +63,7 @@
         var source   = $('#document-template').html();
         var template = Handlebars.compile(source);
         var data     = {
+          sr_no:sr_no,
           date:date,
           invoice_no:invoice_no,
           product_code:product_code,
@@ -66,11 +73,14 @@
         };
         var html = template(data);
         $('#addRow').append(html);
+        $('.product_count').val(sr_no);
          });
         // Remove Handlebar
         $(document).on('click', '.removeeventmore', function(event){
             $(this).closest(".delete_add_more_item").remove();
             totalAmountPrice();
+            var curr_count = parseInt($('.product_count').val()) - 1;
+            $('.product_count').val(curr_count);
         });
         // Handlebar Multificaion
         $(document).on('keyup click', '.unit_price,.selling_qty', function(e){
@@ -110,6 +120,17 @@
           $('#vat_amount').val(vat.toFixed(2));
           $('#estimated_amount').val(sum.toFixed(2));
       }
+      // $(document).on('click','#storeButton', function(){
+      //   var empty = true;
+      //   $('input[name="unit_price[]"]').each(function() {
+      //      if ($(this).val() == "") {
+      //         empty = false;
+      //         alert('Please fill out all required fields.');
+      //         return false;
+      //      }
+      //   });
+      //    $('#myForm').submit();
+      // });
   });
 </script>
 <script type="text/javascript">
@@ -205,6 +226,8 @@
                   <!---- From start ---->
                       <div class="row">
                         <!---- From Colum Start ---->
+                        <input type="hidden" class="product_count" name="product_count" value="0">
+
                                   <div class="col-lg-2">
                                       <div class="form-group">
                                         <label>Invoice No.</label>
@@ -222,7 +245,6 @@
                                         <div class="form-group">
                                           <label>Item Code</label>
                                           <input type="text" name="product_code" id="product_code" class="form-control form-control-sm">
-                                          </select>   
                                        </div> 
                                   </div>
                                   <div class="col-lg-3 supplier_class" style="display:none;">
@@ -268,6 +290,7 @@
                <table class="table-sm table-bordered" width="100%">
                     <thead>
                       <tr>
+                        <th width="3%">Sr.#</th>
                         <th width="12%">Item Code</th>
                         <!-- <th>Category</th> -->
                         <th>Description</th>
@@ -282,13 +305,13 @@
                     </tbody>
                     <tbody>
                       <tr>
-                        <td colspan="4">Discount Amount</td>
+                        <td colspan="5">Discount Amount</td>
                         <td>
                           <input type="number" name="discount_amount" id="discount_amount" class="form-control text-right" placeholder="Write Discount Amount">
                         </td>
                       </tr>
                       <tr>
-                        <td colspan="4">VAT Amount</td>
+                        <td colspan="5">VAT Amount</td>
                         <td>
                           <input type="text" name="vat_amount" value="0" id="vat_amount" class="form-control form-control-sm text-right vat_amount" readonly style="background-color: #D8FDBA">
                         </td>
@@ -296,7 +319,7 @@
                     </tbody>
                     <tbody>
                       <tr>
-                        <td colspan="4"></td>
+                        <td colspan="5"></td>
                         <td>
                           <input type="text" name="estimated_amount" value="0" id="estimated_amount" class="form-control form-control-sm text-right estimated_amount" readonly style="background-color: #D8FDBA">
                         </td>

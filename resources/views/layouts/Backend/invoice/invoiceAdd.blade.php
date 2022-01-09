@@ -8,6 +8,10 @@
       <input type="hidden" name="vat_percent" value="@{{vat_percent}}">
       <input type="hidden" name="supplier_id[]" value="@{{supplier_id}}">
       <td>
+        <input type="hidden" name="sr_no[]" value="@{{sr_no}}">
+        @{{sr_no}}
+      </td>
+      <td>
         <input type="hidden" name="product_id[]" value="@{{product_id}}">
         @{{product_code}}
       </td>
@@ -20,10 +24,10 @@
         @{{product_name}}
       </td>
       <td>
-        <input type="number" min="1" class="form-control form-control-sm text-right selling_qty" name="selling_qty[]"  value="1">
+        <input type="number" min="1" class="form-control form-control-sm text-right selling_qty" name="selling_qty[]"  value="1" required>
       </td> 
       <td>
-        <input type="number" class="form-control form-control-sm text-right unit_price" name="unit_price[]" min="0" step=".01" value="">
+        <input type="number" class="form-control form-control-sm text-right unit_price" name="unit_price[]" min="0" step=".01" value="" required>
       </td>
       <td>
         <input class="form-control form-control-sm text-right selling_price" name="selling_price[]"  value="0" readonly>
@@ -43,6 +47,7 @@
         var category_name = $('#supplier_id').find('option:selected').attr('category_name');
         var product_id    = $('#supplier_id').find('option:selected').attr('product_id');
         var product_name  = $('#supplier_id').find('option:selected').attr('product_name');
+        var sr_no = parseInt($('.product_count').val()) + 1;
          // validation
         if(date==''){
           $.notify("Date is required", {globalPosition: 'top right',className: 'error'});
@@ -59,6 +64,7 @@
         var source   = $('#document-template').html();
         var template = Handlebars.compile(source);
         var data     = {
+          sr_no:sr_no,
           date:date,
           invoice_no:invoice_no,
           supplier_id:supplier_id,
@@ -71,11 +77,14 @@
         };
         var html = template(data);
         $('#addRow').append(html);
+        $('.product_count').val(sr_no);
          });
         // Remove Handlebar
         $(document).on('click', '.removeeventmore', function(event){
             $(this).closest(".delete_add_more_item").remove();
             totalAmountPrice();
+            var curr_count = parseInt($('.product_count').val()) - 1;
+            $('.product_count').val(curr_count);
         });
         // Handlebar Multificaion
         $(document).on('keyup click', '.unit_price,.selling_qty', function(){
@@ -200,6 +209,7 @@
                   <!---- From start ---->
                       <div class="row">
                         <!---- From Colum Start ---->
+                        <input type="hidden" class="product_count" name="product_count" value="0">
                                   <div class="col-lg-1.5">
                                       <div class="form-group">
                                         <label>Invoice No.</label>
@@ -305,6 +315,7 @@
                <table class="table-sm table-bordered" width="100%">
                     <thead>
                       <tr>
+                        <th width="3%">Sr.#</th>
                         <th>Item Code</th>
                         <th>Category</th>
                         <th>Description</th>
@@ -319,13 +330,13 @@
                     </tbody>
                     <tbody>
                       <tr>
-                        <td colspan="5">Discount Amount</td>
+                        <td colspan="6">Discount Amount</td>
                         <td>
                           <input type="number" name="discount_amount" id="discount_amount" class="form-control text-right" placeholder="Write Discount Amount">
                         </td>
                       </tr>
                       <tr>
-                        <td colspan="5">VAT Amount</td>
+                        <td colspan="6">VAT Amount</td>
                         <td>
                           <input type="text" name="vat_amount" value="0" id="vat_amount" class="form-control form-control-sm text-right vat_amount" readonly style="background-color: #D8FDBA">
                         </td>
@@ -333,7 +344,7 @@
                     </tbody>
                     <tbody>
                       <tr>
-                        <td colspan="5"></td>
+                        <td colspan="6"></td>
                         <td>
                           <input type="text" name="estimated_amount" value="0" id="estimated_amount" class="form-control form-control-sm text-right estimated_amount" readonly style="background-color: #D8FDBA">
                         </td>

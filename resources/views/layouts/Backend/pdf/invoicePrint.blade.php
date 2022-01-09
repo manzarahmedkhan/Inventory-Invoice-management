@@ -96,9 +96,9 @@
            <!-- <th>Category Name</th> -->
            <th width="12%">Item Code</th>
            <th>Description</th>
-           <th width="8%">Qty.</th>
+           <th width="6%">Qty.</th>
            <th width="12%">Unit Price</th>
-           <th width="15%">Total Price</th>
+           <th width="12%">Total</th>
         </tr>
     </thead>
     <tbody>
