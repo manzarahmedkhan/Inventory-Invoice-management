@@ -157,7 +157,6 @@ class productController extends Controller
                     // 'H.required'  => 'Supplier number in row '.$key.' is missing!!'
                 ]);
                 if ($validator->fails()) {
-                    dd($validator->errors()->first());
                     Session::flash('error', $validator->errors()->first());
                 }    
 
