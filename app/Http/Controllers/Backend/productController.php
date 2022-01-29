@@ -145,7 +145,7 @@ class productController extends Controller
                     // 'E'  => 'required',
                     // 'F'  => 'required',
                     'G'  => 'required',
-                    'H'  => 'required'
+                    // 'H'  => 'required'
                 ],[
                     'A.required'  => 'Item Code in row '.$key.' is missing!!',
                     'B.required'  => 'Category in row '.$key.' is missing!!',
@@ -154,7 +154,7 @@ class productController extends Controller
                     // 'E.required'  => 'Quantity in row '.$key.' is missing!!',
                     // 'F.required'  => 'Unit Price in row '.$key.' is missing!!',
                     'G.required'  => 'Supplier name in row '.$key.' is missing!!',
-                    'H.required'  => 'Supplier number in row '.$key.' is missing!!'
+                    // 'H.required'  => 'Supplier number in row '.$key.' is missing!!'
                 ]);
                 if ($validator->fails()) {
                     Session::flash('error', $validator->errors()->first());
@@ -164,7 +164,7 @@ class productController extends Controller
 
                     $supplier = supplier::updateOrCreate(['name' => $sheet_data_loop['G']],[
                             'name'   => $sheet_data_loop['G'],
-                            'mobile' => str_replace(' ', '', $sheet_data_loop['H']),
+                            // 'mobile' => str_replace(' ', '', $sheet_data_loop['H']),
                             'created_by' => Auth::id(),
                     ]);
                     $unit = unit::updateOrCreate(['name' => $sheet_data_loop['D']],[
