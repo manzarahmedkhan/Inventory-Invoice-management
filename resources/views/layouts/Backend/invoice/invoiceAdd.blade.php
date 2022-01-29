@@ -332,7 +332,7 @@
                       <tr>
                         <td colspan="6">Discount Amount</td>
                         <td>
-                          <input type="number" name="discount_amount" id="discount_amount" class="form-control text-right" placeholder="Write Discount Amount">
+                          <input type="number" name="discount_amount" id="discount_amount" class="form-control text-right" min="0" step=".01" placeholder="Write Discount Amount">
                         </td>
                       </tr>
                       <tr>
