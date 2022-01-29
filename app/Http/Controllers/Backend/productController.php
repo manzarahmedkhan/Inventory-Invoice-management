@@ -157,6 +157,7 @@ class productController extends Controller
                     // 'H.required'  => 'Supplier number in row '.$key.' is missing!!'
                 ]);
                 if ($validator->fails()) {
+                    dd($validator->errors()->first());
                     Session::flash('error', $validator->errors()->first());
                 }    
 
@@ -164,7 +165,7 @@ class productController extends Controller
 
                     $supplier = supplier::updateOrCreate(['name' => $sheet_data_loop['A']],[
                             'name'   => $sheet_data_loop['A'],
-                            'mobile' => str_replace(' ', '', $sheet_data_loop['H']),
+                            // 'mobile' => str_replace(' ', '', $sheet_data_loop['H']),
                             'created_by' => Auth::id(),
                     ]);
                     $unit = unit::updateOrCreate(['name' => $sheet_data_loop['E']],[
