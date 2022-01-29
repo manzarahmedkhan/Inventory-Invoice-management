@@ -144,16 +144,16 @@ class productController extends Controller
                     'D'  => 'required',
                     // 'E'  => 'required',
                     // 'F'  => 'required',
-                    'G'  => 'required',
+                    'E'  => 'required',
                     // 'H'  => 'required'
                 ],[
-                    'A.required'  => 'Item Code in row '.$key.' is missing!!',
-                    'B.required'  => 'Category in row '.$key.' is missing!!',
-                    'C.required'  => 'Description in row '.$key.' is missing!!',
-                    'D.required'  => 'Unit in row '.$key.' is missing!!',
+                    'A.required'  => 'Supplier name in row '.$key.' is missing!!',
+                    'B.required'  => 'Item Code in row '.$key.' is missing!!',
+                    'C.required'  => 'Category in row '.$key.' is missing!!',
+                    'D.required'  => 'Description in row '.$key.' is missing!!',
+                    'E.required'  => 'Unit in row '.$key.' is missing!!',
                     // 'E.required'  => 'Quantity in row '.$key.' is missing!!',
                     // 'F.required'  => 'Unit Price in row '.$key.' is missing!!',
-                    'G.required'  => 'Supplier name in row '.$key.' is missing!!',
                     // 'H.required'  => 'Supplier number in row '.$key.' is missing!!'
                 ]);
                 if ($validator->fails()) {
@@ -162,28 +162,28 @@ class productController extends Controller
 
                 if (!$validator->fails()) {
 
-                    $supplier = supplier::updateOrCreate(['name' => $sheet_data_loop['G']],[
-                            'name'   => $sheet_data_loop['G'],
-                            // 'mobile' => str_replace(' ', '', $sheet_data_loop['H']),
+                    $supplier = supplier::updateOrCreate(['name' => $sheet_data_loop['A']],[
+                            'name'   => $sheet_data_loop['A'],
+                            'mobile' => str_replace(' ', '', $sheet_data_loop['H']),
                             'created_by' => Auth::id(),
                     ]);
-                    $unit = unit::updateOrCreate(['name' => $sheet_data_loop['D']],[
-                            'name' => $sheet_data_loop['D'],
+                    $unit = unit::updateOrCreate(['name' => $sheet_data_loop['E']],[
+                            'name' => $sheet_data_loop['E'],
                             'created_by' => Auth::id(),
                             'update_by' => Auth::id(),
                     ]);
 
-                    $category = category::updateOrCreate(['name' => $sheet_data_loop['B']],[
-                            'name' => $sheet_data_loop['B'],
+                    $category = category::updateOrCreate(['name' => $sheet_data_loop['C']],[
+                            'name' => $sheet_data_loop['C'],
                             'created_by' => Auth::id(),
                     ]);
 
-                    $unit = product::updateOrCreate(['code' => $sheet_data_loop['A'],'supplier_id' => $supplier->id],[
+                    $unit = product::updateOrCreate(['code' => $sheet_data_loop['B'],'supplier_id' => $supplier->id],[
                             'supplier_id' => $supplier->id,
                             'unit_id' => $unit->id,
                             'category_id' => $category->id,
-                            'code' => $sheet_data_loop['A'],
-                            'name' => $sheet_data_loop['C'],
+                            'code' => $sheet_data_loop['B'],
+                            'name' => $sheet_data_loop['D'],
                             'created_by' => Auth::id(),
                             'update_by' => Auth::id(),
                     ]);
