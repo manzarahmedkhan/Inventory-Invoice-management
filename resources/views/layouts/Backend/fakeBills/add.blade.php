@@ -120,17 +120,24 @@
           $('#vat_amount').val(vat.toFixed(2));
           $('#estimated_amount').val(sum.toFixed(2));
       }
-      // $(document).on('click','#storeButton', function(){
-      //   var empty = true;
-      //   $('input[name="unit_price[]"]').each(function() {
-      //      if ($(this).val() == "") {
-      //         empty = false;
-      //         alert('Please fill out all required fields.');
-      //         return false;
-      //      }
-      //   });
-      //    $('#myForm').submit();
-      // });
+      $(document).on('click','#storeButton', function(){
+        $unit_price = $('.unit_price').val();
+        if($unit_price){
+          $('#myForm').submit();
+        }else{
+          $.notify("Please fill all the required fields.", {globalPosition: 'top right',className: 'error'});
+          return false;
+        }
+        // var empty = true;
+        // $('input[name="unit_price[]"]').each(function() {
+        //    if ($(this).val() == "") {
+        //       empty = false;
+        //       alert('Please fill out all required fields.');
+        //       return false;
+        //    }
+        // });
+         // $('#myForm').submit();
+      });
   });
 </script>
 <script type="text/javascript">
@@ -341,8 +348,16 @@
                   <!-- Paind Status Filed Start -->
                   <div class="col-lg-5">
                    <div class="form-group">
-                     <label><strong>Paid Status</strong></label>
-                     <select name="paid_status" class="form-control form-control-sm" id="paid_status">
+                     <label><strong>Payment Mode</strong></label>
+                     <select name="payment_mode" class="form-control form-control-sm" id="payment_mode">
+                       <option value="">*Select Payment Mode*</option>
+                       <option value="Cash" selected>Cash</option>
+                       <option value="Bank">Bank</option>
+                       <!-- <option value="full_due">Full Due</option> -->
+                       <!-- <option id="Partical_paid" value="Partical_paid">Partical Paid</option> -->
+                     </select>
+                     <br>
+                     <select name="paid_status" class="form-control form-control-sm" id="paid_status" style="display: none;">
                        <option value="">*Select Paid status*</option>
                        <option value="full_paid" selected>Full Paid</option>
                        <!-- <option value="full_due">Full Due</option> -->

@@ -44,6 +44,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item {{ ($route == 'manualBills.add')?'active':'' }}" href="{{ route('manualBills.add') }}">Generate Invoice</a>
             <a class="collapse-item {{ ($route == 'manualBills.print.list')?'active':'' }}" href="{{ route('manualBills.print.list') }}">Print Invoice</a>
+            <a class="collapse-item {{ ($route == 'manualBills.invoiceReport')?'active':'' }}" href="{{ route('manualBills.invoiceReport') }}">Invoice Report</a>
           </div>
         </div>
       </li>

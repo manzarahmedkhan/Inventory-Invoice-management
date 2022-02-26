@@ -124,6 +124,25 @@
           $('#vat_amount').val(vat.toFixed(2));
           $('#estimated_amount').val(sum.toFixed(2));
       }
+
+      $(document).on('click','#storeButton', function(){
+        $unit_price = $('.unit_price').val();
+        if($unit_price){
+          $('#myForm').submit();
+        }else{
+          $.notify("Please fill all the required fields.", {globalPosition: 'top right',className: 'error'});
+          return false;
+        }
+        // var empty = true;
+        // $('input[name="unit_price[]"]').each(function() {
+        //    if ($(this).val() == "") {
+        //       empty = false;
+        //       alert('Please fill out all required fields.');
+        //       return false;
+        //    }
+        // });
+         // $('#myForm').submit();
+      });
   });
 </script>
 <script type="text/javascript">

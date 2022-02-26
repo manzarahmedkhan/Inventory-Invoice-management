@@ -150,5 +150,7 @@ Route::group(['as'=>'manualBills.', 'prefix'=>'manualBills','namespace'=>'Backen
    Route::post('/store','fakeBillsController@store')->name('store');
    Route::get('/print/list', 'fakeBillsController@printList')->name('print.list');
    Route::get('/print/{id}', 'fakeBillsController@print')->name('print');
+   Route::get('/invoiceReport', 'fakeBillsController@invoiceReport')->name('invoiceReport');
+   Route::get('/invoiceReport/print', 'fakeBillsController@InvoiceReportPrint')->name('invoiceReport.print');
 });
 
