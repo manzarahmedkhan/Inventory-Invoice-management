@@ -32,12 +32,6 @@ class fakeBillsController extends Controller
 
     //---- Invoice Store With Multipal Table ----//
     public function store(Request $request){
-        $validation = $request->validate([
-            'product_code' => 'required',
-        ],
-        [
-            'product_code.required' => 'The Item code field is required.'
-        ]);
         $invoice = new fakeBills();
         $invoice->invoice_no  = $request->invoice_no;
         $invoice->date        = date('Y-m-d', strtotime($request->date));
