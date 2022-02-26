@@ -16,11 +16,12 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
+        "milon/barcode": "^7.0",
         "niklasravnsborg/laravel-pdf": "^4.1",
         "phpoffice/phpspreadsheet": "^1.20",
+        "simplesoftwareio/simple-qrcode": "^4.2",
         "stichoza/google-translate-php": "^4.1",
-        "yajra/laravel-datatables-oracle": "^9.18",
-        "milon/barcode": "^7.0"
+        "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
