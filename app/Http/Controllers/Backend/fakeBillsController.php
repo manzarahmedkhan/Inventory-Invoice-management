@@ -29,56 +29,67 @@ class fakeBillsController extends Controller
         }
         return view('layouts.Backend.fakeBills.add', $data);
     }
+
     //---- Invoice Store With Multipal Table ----//
     public function store(Request $request){
-                $invoice = new fakeBills();
-                $invoice->invoice_no  = $request->invoice_no;
-                $invoice->date        = date('Y-m-d', strtotime($request->date));
-                $invoice->vat_percent = $request->vat_percent;
-                $invoice->vat_amount  = number_format($request->vat_amount,2, '.', '');
-                $invoice->discount_amount = number_format($request->discount_amount,2, '.', '');
-                $invoice->total_amount = number_format($request->estimated_amount,2, '.', '');
-                $invoice->customer_name    = $request->customer_name;
-                $invoice->customer_mobile  = $request->customer_mobile;
-                $invoice->comments = $request->description;
-                $invoice->status      = '1';
-                $invoice->created_by  = Auth::user()->id;
-                DB::transaction(function() use($request,$invoice) {
-                   if($invoice->save()) {
-                    // Invoice Details Insert Start //
-                    $category_id = count($request->product_code);
-                    for ($i=0; $i < $category_id; $i++) { 
-                        $invoiceDetail = new fakeBillDetails();
-                        $invoiceDetail->invoice_id  = $invoice->id;
-                        // $invoiceDetail->category    = $request->category_name[$i];
-                        $invoiceDetail->name     = $request->product_name[$i];
-                        $invoiceDetail->code        = $request->product_code[$i];
-                        $invoiceDetail->quantity        = $request->selling_qty[$i];
-                        $invoiceDetail->unit_price   = number_format($request->unit_price[$i],2, '.', '');
-                        $invoiceDetail->selling_price = number_format($request->selling_price[$i],2, '.', '');
-                        $invoiceDetail->supplier = $request->supplier_id[$i];
-                        $invoiceDetail->status        = '0';
-                        $invoiceDetail->save();
-                    }
-                    // Invoice Details Insert End //
-                    // Customer Data Insert Start //
-                  
-                   }
-                });
-              // Multipale Data Insert End //
+        $validation = $request->validate([
+            'product_code' => 'required',
+        ],
+        [
+            'product_code.required' => 'The Item code field is required.'
+        ]);
+        $invoice = new fakeBills();
+        $invoice->invoice_no  = $request->invoice_no;
+        $invoice->date        = date('Y-m-d', strtotime($request->date));
+        $invoice->vat_percent = $request->vat_percent;
+        $invoice->vat_amount  = number_format($request->vat_amount,2, '.', '');
+        $invoice->discount_amount = number_format($request->discount_amount,2, '.', '');
+        $invoice->total_amount = number_format($request->estimated_amount,2, '.', '');
+        $invoice->customer_name    = $request->customer_name;
+        $invoice->customer_mobile  = $request->customer_mobile;
+        $invoice->payment_mode  = $request->payment_mode;
+        $invoice->comments = $request->description;
+        $invoice->status      = '1';
+        $invoice->created_by  = Auth::user()->id;
+        DB::transaction(function() use($request,$invoice) {
+           if($invoice->save()) {
+            // Invoice Details Insert Start //
+            $category_id = count($request->product_code);
+            for ($i=0; $i < $category_id; $i++) { 
+                $invoiceDetail = new fakeBillDetails();
+                $invoiceDetail->invoice_id  = $invoice->id;
+                // $invoiceDetail->category    = $request->category_name[$i];
+                $invoiceDetail->name     = $request->product_name[$i];
+                $invoiceDetail->code        = $request->product_code[$i];
+                $invoiceDetail->quantity        = $request->selling_qty[$i];
+                $invoiceDetail->unit_price   = number_format($request->unit_price[$i],2, '.', '');
+                $invoiceDetail->selling_price = number_format($request->selling_price[$i],2, '.', '');
+                $invoiceDetail->supplier = $request->supplier_id[$i];
+                $invoiceDetail->status        = '0';
+                $invoiceDetail->save();
+            }
+            // Invoice Details Insert End //
+            // Customer Data Insert Start //
+          
+           }
+        });
+        // Multipale Data Insert End //
         // Redirect //
         return redirect()->route('manualBills.print.list')->with('success', 'Invoice Added Successfully');
     }
+
     //---- Invoice Pending List ----//
     public function pendingList(){
         $invoicePending = invoice::orderBy('date','desc')->orderBy('id','desc')->where('status','0')->get();
         return view('layouts.Backend.invoice.invoicePendingList', compact('invoicePending'));
     }
+
     //---- Invoice Approvede ----//
     public function approve($id){
       $data['invoice'] = invoice::with('invoiceDetails')->find($id);
       return view('layouts.Backend.invoice.invoiceApproved', $data);
     }
+
      //---- Invoice ApprovedProcess ----//
     public function approveprocesses(Request $request, $id){
         foreach($request->selling_qty as $key => $val){
@@ -105,11 +116,13 @@ class fakeBillsController extends Controller
         // Redirect 
         return redirect()->route('invoice.pending.list')->with('success', 'Invoice approved successfullly');
     }
+
     // Invoice Print List //
     public function printList(){
         $data['invoices'] = fakeBills::orderBy('date','desc')->orderBy('id', 'desc')->where('status', '1')->get();
         return view('layouts.Backend.fakeBills.billPrintList', $data);
     }
+
     // Invoice Print //
     function print($id) 
     {
@@ -120,27 +133,31 @@ class fakeBillsController extends Controller
         $pdf = PDF::loadView('layouts.Backend.fakeBills.billPrint', $data);
         $pdf->SetProtection(['copy', 'print'], '', 'pass');
         return $pdf->stream('document.pdf');
-   }
+    }
+
    // Invoice Daily //
-   public function DailyInvoice(){
-    return view('layouts.Backend.invoice.dailyInvoice');
+   public function invoiceReport(){
+    return view('layouts.Backend.fakeBills.dailyInvoice');
    }
+
    // Invoice Daily Print //
-   public function DailyInvoicePrint(Request $request){
+   public function InvoiceReportPrint(Request $request){
     // validation
     $validation = $request->validate([
         'start_date' => 'required',
         'end_date'   => 'required'
     ]);
+    // dd($request->all());
      $start_date = date('Y-m-d', strtotime($request->start_date));
      $end_date = date('Y-m-d', strtotime($request->end_date));
-     $data['invoices'] = invoice::whereBetween('date', [$start_date, $end_date])->where('status', '1')->get();
+     $data['invoices'] = fakeBills::whereBetween('date', [$start_date, $end_date])->where('status', '1')->get();
      $data['stime'] = date('Y-m-d', strtotime($request->start_date));
      $data['etime'] = date('Y-m-d', strtotime($request->end_date));
      $pdf = PDF::loadView('layouts.Backend.pdf.invoiceDaily', $data);
      $pdf->SetProtection(['copy', 'print'], '', 'pass');
      return $pdf->stream('document.pdf');
    }
+
     //---- Invoice Delete ----//
     public function delete($id){
       $invoiceDelete = invoice::find($id);

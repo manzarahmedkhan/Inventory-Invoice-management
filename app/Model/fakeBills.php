@@ -10,4 +10,7 @@ class fakeBills extends Model
 	public function fakeBillsDetails(){
     	return $this->hasMany(fakeBillDetails::class, 'invoice_id', 'id');
     }
+    public function payment(){
+       return $this->belongsTo(fakeBillDetails::class, 'id','invoice_id');
+    }
 }
