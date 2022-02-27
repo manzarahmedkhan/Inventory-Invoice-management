@@ -84,10 +84,10 @@
 			<td style="text-align: right; color:red;">{{ number_format($bankTotal,2) }}</td>
 		</tr>
 		<tr>
-			<td style="text-align: right; color:green;" colspan="3">Total:-</td>
-			<td style="text-align: right; color:green;">{{ number_format($finalAmount,2) }}</td>
-			<td style="text-align: right; color:green;">{{ number_format($finalVat,2) }}</td>
-			<td style="text-align: right; color:green;">{{ number_format($finalTotal,2) }}</td>
+			<td style="text-align: right; color: #003300;" colspan="3">Total:-</td>
+			<td style="text-align: right; color:#003300;">{{ number_format($finalAmount,2) }}</td>
+			<td style="text-align: right; color:#003300;">{{ number_format($finalVat,2) }}</td>
+			<td style="text-align: right; color:#003300;">{{ number_format($finalTotal,2) }}</td>
 		</tr>
 	</tbody>
 </table>
