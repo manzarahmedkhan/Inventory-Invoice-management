@@ -15,11 +15,12 @@
 <table border="1" width="100%" style="text-align: center;">
 	<thead>
 		<tr>
-			<td>Date</td>
+			<td width="14%">Date</td>
 			<td width="30%">Customer Name-Mobile</td>
-			<td>Invoice No</td>
-			<td>Comment</td>
-			<td>Amount</td>
+			<td width="12%">Invoice No</td>
+			<td width="14%">Amount</td>
+			<td width="14%">Vat(15%)</td>
+			<td>Total</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -37,11 +38,13 @@
 				@endphp
 				{{ $invoice->payment->customer->name ?? $invoice->customer_name }}@if($customerMobile){{'-'.$customerMobile }}@endif 
 			</td>
-			<td align="right">{{ $invoice->invoice_no }}</td>
-			<td>{{ $invoice->description ?? $invoice->comments }}</td>
 			@php
 			$totalAmount = $invoice->payment->total_amount ?? $invoice->total_amount;
+			$vatAmount = $invoice->vat_amount ?? 0.00;
 			@endphp
+			<td align="right">{{ $invoice->invoice_no }}</td>
+			<td align="right">{{ number_format($totalAmount - $vatAmount,2) }}</td>
+			<td align="right">{{ number_format($vatAmount,2) }}</td>
 			<td align="right">{{ number_format($totalAmount,2) }}</td>
 		</tr>
 		@php
@@ -55,16 +58,16 @@
 		@endphp
 		@endforeach
 		<tr>
-			<td style="text-align: right; color:red;" colspan="4">Cash Total:-</td>
-			<td style="color:red;">{{ number_format($cashTotal,2) }}</td>
+			<td style="text-align: right; color:red;" colspan="5">Cash Total:-</td>
+			<td style="text-align: right; color:red;">{{ number_format($cashTotal,2) }}</td>
 		</tr>
 		<tr>
-			<td style="text-align: right; color:red;" colspan="4">Bank Total:-</td>
-			<td style="color:red;">{{ number_format($bankTotal,2) }}</td>
+			<td style="text-align: right; color:red;" colspan="5">Bank Total:-</td>
+			<td style="text-align: right; color:red;">{{ number_format($bankTotal,2) }}</td>
 		</tr>
 		<tr>
-			<td style="text-align: right; color:green;" colspan="4">Sub Total:-</td>
-			<td style="color:green;">{{ number_format($subTotal,2) }}</td>
+			<td style="text-align: right; color:green;" colspan="5">Sub Total:-</td>
+			<td style="text-align: right; color:green;">{{ number_format($subTotal,2) }}</td>
 		</tr>
 	</tbody>
 </table>
