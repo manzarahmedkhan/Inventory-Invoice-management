@@ -1,5 +1,4 @@
 <!-- {!! $barCode !!} -->
-<?php //dd(1); ?>
 <!DOCTYPE html>
 <html>
 <head>
