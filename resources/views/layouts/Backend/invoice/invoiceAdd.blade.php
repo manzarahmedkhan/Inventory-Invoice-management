@@ -127,9 +127,7 @@
 
       $(document).on('click','#storeButton', function(){
         $unit_price = $('.unit_price').val();
-        if($unit_price){
-          $('#myForm').submit();
-        }else{
+        if(!$unit_price){
           $.notify("Please fill all the required fields.", {globalPosition: 'top right',className: 'error'});
           return false;
         }

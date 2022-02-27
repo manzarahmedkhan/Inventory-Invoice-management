@@ -24,7 +24,9 @@
 	</thead>
 	<tbody>
 		@php 
-		$subTotal = '0';
+		$bankTotal =0;
+		$cashTotal =0;
+		$subTotal = 0;
 		@endphp
 		@foreach($invoices as $invoice)
 		<tr>
@@ -43,9 +45,23 @@
 			<td align="right">{{ number_format($totalAmount,2) }}</td>
 		</tr>
 		@php
+		$paymentMode = $invoice->payment_mode ?? null;
+		if($paymentMode == "Bank"){
+			$bankTotal += $totalAmount;
+		}else{
+			$cashTotal += $totalAmount;
+		}
 		$subTotal += $totalAmount;
 		@endphp
 		@endforeach
+		<tr>
+			<td style="text-align: right; color:red;" colspan="4">Cash Total:-</td>
+			<td style="color:red;">{{ number_format($cashTotal,2) }}</td>
+		</tr>
+		<tr>
+			<td style="text-align: right; color:red;" colspan="4">Bank Total:-</td>
+			<td style="color:red;">{{ number_format($bankTotal,2) }}</td>
+		</tr>
 		<tr>
 			<td style="text-align: right; color:green;" colspan="4">Sub Total:-</td>
 			<td style="color:green;">{{ number_format($subTotal,2) }}</td>

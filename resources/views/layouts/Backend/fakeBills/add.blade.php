@@ -122,9 +122,7 @@
       }
       $(document).on('click','#storeButton', function(){
         $unit_price = $('.unit_price').val();
-        if($unit_price){
-          $('#myForm').submit();
-        }else{
+        if(!$unit_price){
           $.notify("Please fill all the required fields.", {globalPosition: 'top right',className: 'error'});
           return false;
         }
@@ -349,7 +347,7 @@
                   <div class="col-lg-5">
                    <div class="form-group">
                      <label><strong>Payment Mode</strong></label>
-                     <select name="payment_mode" class="form-control form-control-sm" id="payment_mode">
+                     <select name="payment_mode" class="form-control form-control-sm" id="payment_mode" required>
                        <option value="">*Select Payment Mode*</option>
                        <option value="Cash" selected>Cash</option>
                        <option value="Bank">Bank</option>
