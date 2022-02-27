@@ -33,7 +33,7 @@
   </script>
 <script type="text/javascript">
   $(document).ready(function(){
-    var vat_percent = 15;
+    var vat_percent = 0;
      $(document).on('click','.addMore', function(){
 
         var date = $('#date').val();

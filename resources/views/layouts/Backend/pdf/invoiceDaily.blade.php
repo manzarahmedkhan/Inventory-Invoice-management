@@ -79,9 +79,9 @@
 		</tr>
 		<tr>
 			<td style="text-align: right; color:red;" colspan="3">Bank Total:-</td>
-			<td style="text-align: right; color:red;">{{ number_format($bankAmount,2) }}</td>
-			<td style="text-align: right; color:red;">{{ number_format($bankVat,2) }}</td>
-			<td style="text-align: right; color:red;">{{ number_format($bankTotal,2) }}</td>
+			<td style="text-align: right; color:red;">{{ number_format($finalAmount,2) }}</td>
+			<td style="text-align: right; color:red;">{{ number_format($finalVat,2) }}</td>
+			<td style="text-align: right; color:red;">{{ number_format($finalTotal,2) }}</td>
 		</tr>
 		<tr>
 			<td style="text-align: right; color:green;" colspan="3">Total:-</td>
