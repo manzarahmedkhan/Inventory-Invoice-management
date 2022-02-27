@@ -16,11 +16,11 @@
 	<thead>
 		<tr>
 			<td width="14%">Date</td>
-			<td width="30%">Customer Name-Mobile</td>
-			<td width="12%">Invoice No</td>
+			<td>Customer Name-Mobile</td>
+			<td width="11%">Invoice #</td>
 			<td width="14%">Amount</td>
-			<td width="14%">Vat(15%)</td>
-			<td>Total</td>
+			<td width="11%">Vat(15%)</td>
+			<td width="14%">Total</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -58,6 +58,10 @@
 		@endphp
 		@endforeach
 		<tr>
+			<td style="text-align: right; color:red;" colspan="5">Vat Total:-</td>
+			<td style="text-align: right; color:red;">{{ number_format($cashTotal,2) }}</td>
+		</tr>
+		<tr>
 			<td style="text-align: right; color:red;" colspan="5">Cash Total:-</td>
 			<td style="text-align: right; color:red;">{{ number_format($cashTotal,2) }}</td>
 		</tr>
@@ -66,7 +70,7 @@
 			<td style="text-align: right; color:red;">{{ number_format($bankTotal,2) }}</td>
 		</tr>
 		<tr>
-			<td style="text-align: right; color:green;" colspan="5">Sub Total:-</td>
+			<td style="text-align: right; color:green;" colspan="5">Total:-</td>
 			<td style="text-align: right; color:green;">{{ number_format($subTotal,2) }}</td>
 		</tr>
 	</tbody>
