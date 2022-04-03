@@ -18,6 +18,7 @@ class invoice extends Model
 
     static function generateQRcode($invoice){
         $QRCodeData = "Seller: ".Auth::user()->arabic_shopName."
+VAT No: ".Auth::user()->arabic_vat."
 C.R: ".Auth::user()->arabic_CR_no."
 DATE: ".date('d-m-Y',strtotime($invoice->date)).date(' h:i A',strtotime($invoice->created_at))."
 VAT AMOUNT: ".number_format($invoice->vat_amount,2)."
