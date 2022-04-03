@@ -40,12 +40,18 @@
 			   <td align="left">
 				    <span style="font-size: 15px;">
 				    	{{Auth::user()->description}} <br>
+				    	@if(Auth::user()->vat)
+				    	{{Auth::user()->vat}} <br>
+				    	@endif
 				    	{{Auth::user()->CR_no}}	
 				    </span>
 			    </td>
 			    <td align="right">
 				    <span style="font-size: 15px;">
 				    	{{Auth::user()->arabic_description}} <br>
+				    	@if(Auth::user()->vat)
+				    	{{Auth::user()->arabic_vat}} <br>
+				    	@endif
 				    	{{Auth::user()->arabic_CR_no}}	
 				    </span>
 			    </td>
