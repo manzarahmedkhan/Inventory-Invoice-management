@@ -13,4 +13,8 @@ class fakeBills extends Model
     public function payment(){
        return $this->belongsTo(fakeBillDetails::class, 'id','invoice_id');
     }
+
+    public function customer(){
+       return $this->hasOne(customer::class, 'id','customer_id');
+    }
 }

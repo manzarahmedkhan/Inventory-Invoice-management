@@ -370,11 +370,35 @@
 
                  <!-- Customer Filed Start -->
                   <div class="col-lg-7">
-                   <div class="form-group">
+                   <!-- <div class="form-group">
                       <label><strong>Customer Details</strong></label>
                        <input type="text" name="customer_name" class="form-control" placeholder="Customer Name" value="CASH">
                        <br>
                        <input type="number" name="customer_mobile" class="form-control" placeholder="Customer Mobile">
+                   </div> -->
+                   <div class="form-group">
+                     <label><strong>Select Customer</strong></label>
+                     <select name="customer" class="form-control select2" id="customer">
+                       <option value="">*Select Customer*</option>
+                       @foreach($customers as $customer)
+                       <option value="{{ $customer->id }}" @if($customer->id == 1) selected @endif>
+                         {{ $customer->name }} @if($customer->mobile)| {{ $customer->mobile }}@endif @if($customer->vat_no)| {{ $customer->vat_no }}@endif
+                       </option>
+                       @endforeach
+                       <option value="0">New Customer</option>
+                     </select>
+                     <!--- After New Customer Start --->
+                     <br><br>
+                     <div class="newCustomer" style="display: none;">
+                      <strong>New Customer Information Field</strong>
+                       <input type="text" name="name" class="form-control" placeholder="Customer Name">
+                       <br>
+                       <input type="number" name="mobile" class="form-control" placeholder="Customer Mobile">
+                       <br>
+                       <input type="text" name="customer_vat" class="form-control" placeholder="Customer VAT">
+                       <!-- <br> -->
+                       <!-- <input type="text" name="address" class="form-control" placeholder="Write Customer Adddress"> -->
+                     </div>
                      <!--- After New Customer End ---> 
                    </div>
                   </div>

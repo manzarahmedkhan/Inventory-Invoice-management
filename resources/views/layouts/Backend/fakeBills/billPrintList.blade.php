@@ -28,9 +28,9 @@
                      <tr>
                        <td>{{ $key+1 }}</td>
                        <td>
-                        {{ $invoice->customer_name }}
-                        @if($invoice->customer_mobile)
-                        ( {{ $invoice->customer_mobile }} )
+                        {{ $invoice->customer_name ?? $invoice->name }}
+                        @if($invoice->customer_mobile || $invoice->mobile)
+                        ( {{ $invoice->customer_mobile ??  $invoice->mobile}} )
                         @endif
                        </td>
                        <td> Invoice No #{{ $invoice->invoice_no }}</td>

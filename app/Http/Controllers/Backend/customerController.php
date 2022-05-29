@@ -15,7 +15,7 @@ class customerController extends Controller
 {
     //---- Customer View ----//
     public function view(){
-    	$customers = customer::select('id','name','mobile','email','address')->get();
+    	$customers = customer::select('id','name','mobile','email','address','vat_no')->get();
     	return view('layouts.Backend.customers.customerView', compact('customers'));
     }
     //---- Customer Add ----//
@@ -36,6 +36,7 @@ class customerController extends Controller
         $customer->mobile     = $request->mobile;
         $customer->email      = $request->email;
         $customer->address    = $request->address;
+        $customer->vat_no    = $request->vat_no;
         $customer->created_by = Auth::user()->id;
         $customer->save();
       // Redirect 
@@ -60,6 +61,7 @@ class customerController extends Controller
         $customerUpdate->mobile     = $request->mobile;
         $customerUpdate->email      = $request->email;
         $customerUpdate->address    = $request->address;
+        $customerUpdate->vat_no     = $request->vat_no;
         $customerUpdate->updated_by = Auth::user()->id;
         $customerUpdate->save();
         // Redirect 

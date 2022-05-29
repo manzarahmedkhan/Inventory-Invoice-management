@@ -21,6 +21,7 @@
                       <th>Mobile</th>
                       <th>Email</th>
                       <th>Address</th>
+                      <th>VAT</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -32,6 +33,7 @@
                       <td>{{ $customer->mobile }}</td>
                       <td>{{ $customer->email }}</td>
                       <td>{{ $customer->address }}</td>
+                      <td>{{ $customer->vat_no }}</td>
                       <td>
                       	<a title="Edit" class="btn btn-success" href="{{ route('customer.edit', $customer->id) }}"><i class="fa fa-edit"></i></a>
                       	<a onclick="return confirm('are you suer to delete User')" title="Delete" class="btn btn-danger" href="{{ route('customer.delete', $customer->id) }}"><i class="fa fa-trash"></i></a>

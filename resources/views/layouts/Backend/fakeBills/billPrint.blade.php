@@ -82,13 +82,22 @@
 	  <tr>
 	  <td colspan="4">	
 		<span style="font-size: 15px;">
-		 Customer Name : <strong>{{ $invoice->customer_name }} </strong>
+		 Customer Name : <strong>{{ $invoice->customer_name ?? $invoice->customer->name }} </strong>
 		</span>
 	  </td>
-	  	@if($invoice->customer_mobile)
+	  	@if($invoice->customer_mobile || isset($invoice->customer->mobile))
 		<td colspan="4">
 		<span style="font-size: 15px;">
-		 Mobile : {{ $invoice->customer_mobile }}
+		 Mobile : {{ $invoice->customer_mobile ?? $invoice->customer->mobile }}
+		</span>
+	    </td>
+	    @endif
+	  </tr>
+	  <tr>
+	  	@if(isset($invoice->customer->vat_no))
+		<td colspan="4">
+		<span style="font-size: 13px;">
+		 Customer VAT : {{ $invoice->customer->vat_no }}
 		</span>
 	    </td>
 	    @endif

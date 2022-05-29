@@ -27,11 +27,28 @@ class fakeBillsController extends Controller
             $invoiceCheck = fakeBills::orderBy('id','desc')->first()->invoice_no;
             $data['invoiceData'] = $invoiceCheck+1;
         }
+        $data['customers'] = customer::all();
         return view('layouts.Backend.fakeBills.add', $data);
     }
 
     //---- Invoice Store With Multipal Table ----//
     public function store(Request $request){
+        // insert customer details
+        if($request->customer == '0') {
+            $customer = new customer();
+            $customer->name    = $request->name;
+            $customer->mobile  = $request->mobile;
+            $customer->vat_no   = $request->customer_vat;
+            // $customer->address = $request->address;
+            $customer->save();
+            $customer_id = $customer->id;
+        }elseif($request->customer == null){
+            $customer_id = 1;
+        }else{
+            $customer_id = $request->customer;
+        }
+
+        // Invoice 
         $invoice = new fakeBills();
         $invoice->invoice_no  = $request->invoice_no;
         $invoice->date        = date('Y-m-d', strtotime($request->date));
@@ -39,6 +56,7 @@ class fakeBillsController extends Controller
         $invoice->vat_amount  = number_format($request->vat_amount,2, '.', '');
         $invoice->discount_amount = number_format($request->discount_amount,2, '.', '');
         $invoice->total_amount = number_format($request->estimated_amount,2, '.', '');
+        $invoice->customer_id      = $customer_id;
         $invoice->customer_name    = $request->customer_name;
         $invoice->customer_mobile  = $request->customer_mobile;
         $invoice->payment_mode  = $request->payment_mode;
@@ -113,15 +131,15 @@ class fakeBillsController extends Controller
 
     // Invoice Print List //
     public function printList(){
-        $data['invoices'] = fakeBills::orderBy('date','desc')->orderBy('id', 'desc')->where('status', '1')->get();
+        $data['invoices'] = fakeBills::select('fake_bills.*','customers.name','customers.mobile')->leftjoin('customers','fake_bills.customer_id','customers.id')->orderBy('date','desc')->orderBy('id', 'desc')->where('fake_bills.status', '1')->get();
         return view('layouts.Backend.fakeBills.billPrintList', $data);
     }
 
     // Invoice Print //
     function print($id) 
     {
-        $data['invoice'] = fakeBills::with('fakeBillsDetails')->find($id);
-
+        $data['invoice'] = fakeBills::with('fakeBillsDetails','customer')->find($id);
+// dd($data['invoice']->name);
         $data['qrCode'] = invoice::generateQRcode($data['invoice']);
         $data['barCode'] = invoice::generateBarCode($data['invoice']->invoice_no);
         $pdf = PDF::loadView('layouts.Backend.fakeBills.billPrint', $data);

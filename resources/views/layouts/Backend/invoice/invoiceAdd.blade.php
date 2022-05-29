@@ -402,7 +402,7 @@
                    <div class="form-group">
                      <label><strong>Select Customer</strong></label>
                      <select name="customer" class="form-control select2" id="customer">
-                       <option value="">*Select Customer*</option>
+                       <option value=0>*Select Customer*</option>
                        @foreach($customers as $customer)
                        <option value="{{ $customer->id }}" @if($customer->id == 1) selected @endif>
                          {{ $customer->name }} @if($customer->mobile)| {{ $customer->mobile }}@endif | @if($customer->mobile){{ $customer->address }}@endif

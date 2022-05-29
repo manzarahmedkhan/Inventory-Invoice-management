@@ -54,6 +54,16 @@
                                           @enderror
                                        </div> 
                                   </div>
+                                  <div class="col-lg-6">
+                                        <div class="form-group">
+                                          <label>Vat No</label>
+                                           <input type="text" name="vat_no" class="form-control @error('vat_no') Invalid @enderror" value="{{ $customerEdit->vat_no }}">
+                                           @error('vat_no')
+                                           <strong class="alert alert-danger">{{ $message }}
+                                           </strong>
+                                          @enderror
+                                       </div> 
+                                  </div>
                         <!---- From Two Colum Start ---->
                     </div><!--End row -->
                       <!-- Submit Button start -->
