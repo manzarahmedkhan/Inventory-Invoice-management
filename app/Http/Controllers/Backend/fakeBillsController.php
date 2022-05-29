@@ -139,7 +139,6 @@ class fakeBillsController extends Controller
     function print($id) 
     {
         $data['invoice'] = fakeBills::with('fakeBillsDetails','customer')->find($id);
-// dd($data['invoice']->name);
         $data['qrCode'] = invoice::generateQRcode($data['invoice']);
         $data['barCode'] = invoice::generateBarCode($data['invoice']->invoice_no);
         $pdf = PDF::loadView('layouts.Backend.fakeBills.billPrint', $data);
