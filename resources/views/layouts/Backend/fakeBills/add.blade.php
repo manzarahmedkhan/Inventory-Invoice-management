@@ -351,6 +351,7 @@
                        <option value="">*Select Payment Mode*</option>
                        <option value="Cash" selected>Cash</option>
                        <option value="Bank">Bank</option>
+                       <option value="Cash+Bank">Cash+Bank</option>
                        <!-- <option value="full_due">Full Due</option> -->
                        <!-- <option id="Partical_paid" value="Partical_paid">Partical Paid</option> -->
                      </select>
