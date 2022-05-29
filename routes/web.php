@@ -64,6 +64,7 @@ Route::group(['as'=>'customer.', 'prefix'=>'customer','namespace'=>'Backend','mi
    Route::get('/wais/report','customerController@customerWaisReport')->name('wais.report');
    Route::get('/credit/wais/pdf','customerController@customerCreditWaisPdf')->name('credit.wais.pdf');
    Route::get('/paid/wais/pdf','customerController@customerPaidWaisPdf')->name('paid.wais.pdf');
+   Route::get('/updateCustomer','customerController@updateCustomer')->name('updateCustomer');
 });
 // Unit Route //
 Route::group(['as'=>'unit.', 'prefix'=>'unit','namespace'=>'Backend','middleware'=>'checkvalidUsers'], function(){

@@ -8,6 +8,7 @@ use App\Model\customer;
 use App\Model\payment;
 use App\Model\invoiceDetail;
 use App\Model\paymentDetail;
+use App\Model\fakeBills;
 use Auth;
 use PDF;
 
@@ -170,5 +171,19 @@ class customerController extends Controller
         $pdf = PDF::loadView('layouts.Backend.pdf.singleCustomerPaidPdf', $data);
         $pdf->SetProtection(['copy', 'print'], '', 'pass');
         return $pdf->stream('document.pdf');
+    }
+
+    public function updateCustomer(){
+        $data = fakeBills::select('customer_name','customer_mobile')->groupBy('customer_name','customer_mobile')->get();
+        foreach ($data as $key => $value) {
+            if($value->customer_name){
+                customer::updateOrCreate([
+                    'name'   => $value->customer_name,
+                ],[
+                    'name'     => $value->customer_name,
+                    'mobile'    => $value->customer_mobile
+                ]); 
+            }
+        }
     }
 }
