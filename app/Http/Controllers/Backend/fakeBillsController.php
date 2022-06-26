@@ -61,6 +61,9 @@ class fakeBillsController extends Controller
         $invoice->customer_mobile  = $request->customer_mobile;
         $invoice->payment_mode  = $request->payment_mode;
         $invoice->comments = $request->description;
+        if(isset($request->description_check)){
+            $invoice->description_check = 1;
+        }
         $invoice->status      = '1';
         $invoice->created_by  = Auth::user()->id;
         DB::transaction(function() use($request,$invoice) {

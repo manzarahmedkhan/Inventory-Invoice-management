@@ -362,9 +362,10 @@
                        <!-- <option value="full_due">Full Due</option> -->
                        <!-- <option id="Partical_paid" value="Partical_paid">Partical Paid</option> -->
                      </select>
-                     <!--- After Partical Paid --->
-                     <br>
-                     <input type="text" name="paid_amount" class="form-control paid_amount" placeholder="Write Partical Amount" style="display: none;"> 
+                     <div>
+                        <label><strong>Do not want Description</strong></label>
+                        <input type="checkbox" name="description_check">
+                     </div>
                    </div>
                   </div>
                   <!-- Paind Status Filed Start -->

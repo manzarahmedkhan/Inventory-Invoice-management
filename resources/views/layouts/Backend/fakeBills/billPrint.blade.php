@@ -39,7 +39,9 @@
 			<tr>
 			   <td align="left">
 				    <span style="font-size: 15px;">
+				    	@if($invoice->description_check == 0)
 				    	{{Auth::user()->description}} <br>
+				    	@endif
 				    	@if(Auth::user()->vat)
 				    	{{Auth::user()->vat}} <br>
 				    	@endif
@@ -48,7 +50,9 @@
 			    </td>
 			    <td align="right">
 				    <span style="font-size: 15px;">
+				    	@if($invoice->description_check == 0)
 				    	{{Auth::user()->arabic_description}} <br>
+				    	@endif
 				    	@if(Auth::user()->vat)
 				    	{{Auth::user()->arabic_vat}} <br>
 				    	@endif
