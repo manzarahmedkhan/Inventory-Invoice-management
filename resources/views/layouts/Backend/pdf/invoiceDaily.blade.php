@@ -41,9 +41,9 @@
 			<td>{{ date('d-m-Y',strtotime($invoice->date)) }}</td>
 			<td>
 				@php
-				$customerMobile = $invoice->payment->customer->mobile ?? $invoice->customer_mobile;
+				$customerMobile = $invoice->customer->mobile ?? $invoice->customer_mobile;
 				@endphp
-				{{ $invoice->payment->customer->name ?? $invoice->customer_name }}@if($customerMobile){{'-'.$customerMobile }}@endif 
+				{{ $invoice->customer->name ?? $invoice->customer_name }}@if($customerMobile){{'-'.$customerMobile }}@endif 
 			</td>
 			@php
 			$totalAmount = $invoice->payment->total_amount ?? $invoice->total_amount;
